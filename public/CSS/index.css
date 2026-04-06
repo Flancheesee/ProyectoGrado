@@ -1,0 +1,135 @@
+*{
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%;
+    padding: 20px 30px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+#logo img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    object-fit: cover;
+}
+
+#infoYredes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    gap: 10px;
+}
+
+#informacion {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#informacion p {
+    margin: 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#redes {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+#redes p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#redes img {
+    width: 28px;
+    height: 28px;
+}
+
+#usuario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    border: 2px solid #000;
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+
+#usuario img {
+    width: 32px;
+    height: 32px;
+}
+
+#usuario button {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: url("data:image/svg+xml;utf8,<svg fill='black' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>") center/contain no-repeat;
+    cursor: pointer;
+}
+
+section{
+    display: flex;
+    flex-direction: row;
+}
+
+#menu_vertical{
+    padding: 15px;
+    border-right: 5px black solid;
+    width: 30%;
+    height: auto;
+
+    border-left: 5px solid black;
+}
+
+#menu_vertical button{
+    padding: 10px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    width: 170px;
+    height: 40px;
+}
+
+#pagina_principal{
+    width: 70%;
+    height: auto;
+}
+
+#infoPrincipal{
+    width: 80%;
+    margin-left: 10px;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+
+    border-right: 5px solid black;
+}
+
+footer{
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    justify-content: center;
+
+    border-top: 5px solid black;
+
+}
