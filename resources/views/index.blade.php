@@ -41,10 +41,23 @@
                 </div>
             </div>
 
-            <div id="usuario">
-                <img src="" alt="">
-                <p id="nickname">inicia sesion/registrate</p>
-                <button></button>
+            <div id="usuario" onclick="toggleLogin()" style="cursor: pointer;">
+                <img src="{{ asset('img/default_user.png') }}" alt="User" style="width: 30px;">
+                <p id="nickname">Inicia sesión / Regístrate</p>
+            </div>
+
+            <div id="loginModal" class="modal-overlay">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="toggleLogin()">&times;</span>
+                    <h2>Inicia Sesión</h2>
+                    <form action="{{ route('login') }}" method="POST">
+                        @csrf
+                        <input type="email" name="email" placeholder="Correo electrónico" required>
+                        <input type="password" name="password" placeholder="Contraseña" required>
+                        <button type="submit" class="btn-enviar">Entrar</button>
+                    </form>
+                    <p>¿No tienes cuenta? <a href="{{ route('register') }}">Regístrate</a></p>
+                </div>
             </div>
 
         </header>
@@ -79,5 +92,6 @@
         <footer>
             <h1>FOOTER</h1>
         </footer>
+        <script src="{{ asset('js/index.js') }}"></script>
     </body>
 </html>

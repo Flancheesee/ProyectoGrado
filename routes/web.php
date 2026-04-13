@@ -29,6 +29,10 @@ Route::get('support', function(){
     return view('support');
 })-> name('support');
 
+Route::get('/register', function(){
+    return view('registro');
+})-> name('registro');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
