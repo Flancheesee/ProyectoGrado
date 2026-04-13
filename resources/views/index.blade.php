@@ -50,12 +50,25 @@
         </header>
         <section>
             <article id="menu_vertical">
-                <button id="home">🏡 Home</button>
-                <button id="mudanza">📦 Mudanza</button>
-                <button id="sobre_nosotros">👥 Sobre Nosotros</button>
-                <button id="review">⭐ Reseñas</button>
-                <button id="faq">❓ Preguntas frecuentes</button>
-                <button id="atencion_al_cliente">🎧 Atencion al cliente</button>
+                <a href="{{ route('home') }}">
+                    <button id="home">🏡 Home</button>
+                </a>
+                <a href="{{ route('envios') }}">
+                    <button id="envios">📦 Envios</button>
+                </a>
+                
+                <a href="{{ route('about_us')}}">
+                    <button id="sobre_nosotros">👥 Sobre Nosotros</button>
+                </a>
+                <a href="{{ route('review')}}">
+                    <button id="review">⭐ Reseñas</button>
+                </a>
+                <a href="{{ route('faq')}}">
+                    <button id="faq">❓ Preguntas frecuentes</button>
+                </a>
+                <a href="{{ route('support')}}">
+                    <button id="atencion_al_cliente">🎧 Atencion al cliente</button>
+                </a>
             </article>
 
             <article id="infoPrincipal">
