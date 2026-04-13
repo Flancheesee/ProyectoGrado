@@ -25,17 +25,23 @@
 
                 <div id="redes">
                     <p id="facebook">
-                        <img src="" alt="">
+                        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ asset('img/facebook_logo.png') }}" alt="">
+                        </a>
                         <span>move_it</span>
                     </p>
 
                     <p id="instagram">
-                        <img src="" alt="">
+                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                           <img src="{{ asset('img/instagram_logo.png') }}" alt=""> 
+                        </a>
                         <span>@moveit_España</span>
                     </p>
 
                     <p id="twitter">
-                        <img src="" alt="">
+                        <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
+                            <img src="{{ asset('img/twitter_logo.png') }}" alt="">
+                        </a>
                         <span>@move_it</span>
                     </p>
                 </div>

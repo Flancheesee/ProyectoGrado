@@ -13,6 +13,8 @@ header {
     display: flex;
     align-items: center;
     gap: 30px;
+
+    background-color: #F1D3A6;
 }
 
 #logo img {
@@ -21,6 +23,7 @@ header {
     border-radius: 50%;
     border: 2px solid #000;
     object-fit: cover;
+    background-color: transparent;
 }
 
 #infoYredes {
@@ -29,12 +32,14 @@ header {
     justify-content: center;
     flex-grow: 1;
     gap: 10px;
+    background-color: transparent;
 }
 
 #informacion {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    background-color: transparent;
 }
 
 #informacion p {
@@ -43,12 +48,18 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
+    background-color: transparent;
 }
 
 #redes {
     display: flex;
     justify-content: center;
     gap: 40px;
+    background-color: transparent;
+}
+
+#redes span {
+    background-color: transparent;
 }
 
 #redes p {
@@ -56,11 +67,17 @@ header {
     display: flex;
     align-items: center;
     gap: 6px;
+    background-color: transparent;
 }
 
 #redes img {
     width: 28px;
     height: 28px;
+    background-color: transparent;
+}
+
+#redes a{
+    background-color: transparent;
 }
 
 #usuario {
@@ -72,11 +89,18 @@ header {
     border: 2px solid #000;
     padding: 8px 10px;
     border-radius: 8px;
+    background-color: #7B5A37;
 }
 
 #usuario img {
     width: 32px;
     height: 32px;
+    background-color: transparent;
+    
+}
+
+#usuario p{
+    background-color: transparent;
 }
 
 #usuario button {
@@ -85,6 +109,7 @@ header {
     border: none;
     background: url("data:image/svg+xml;utf8,<svg fill='black' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>") center/contain no-repeat;
     cursor: pointer;
+    background-color: #7B5A37;
 }
 
 .modal-overlay {
@@ -109,7 +134,7 @@ header {
 
 /* Caja del formulario */
 .modal-content {
-    background-color: white;
+    background-color: #D6B87A;
     margin: 10% auto;
     padding: 20px;
     width: 300px;
