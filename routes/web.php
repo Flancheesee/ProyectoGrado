@@ -29,7 +29,7 @@ Route::get('support', function(){
     return view('support');
 })-> name('support');
 
-Route::get('/register', function(){
+Route::get('/registro', function(){
     return view('registro');
 })-> name('registro');
 

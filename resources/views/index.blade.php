@@ -43,45 +43,53 @@
 
             <div id="usuario" onclick="toggleLogin()" style="cursor: pointer;">
                 <img src="{{ asset('img/default_user.png') }}" alt="User" style="width: 30px;">
-                <p id="nickname">Inicia sesión / Regístrate</p>
+                <p id="nickname">Inicia sesión</p>
             </div>
 
             <div id="loginModal" class="modal-overlay">
-                <div class="modal-content">
-                    <span class="close-btn" onclick="toggleLogin()">&times;</span>
-                    <h2>Inicia Sesión</h2>
-                    <form action="{{ route('login') }}" method="POST">
-                        @csrf
-                        <input type="email" name="email" placeholder="Correo electrónico" required>
-                        <input type="password" name="password" placeholder="Contraseña" required>
-                        <button type="submit" class="btn-enviar">Entrar</button>
-                    </form>
-                    <p>¿No tienes cuenta? <a href="{{ route('register') }}">Regístrate</a></p>
-                </div>
+            <div class="modal-content">
+                <span class="close-btn" onclick="toggleLogin()">&times;</span>
+                <h2>Inicia Sesión</h2>
+                
+                <form action="{{ route('login') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    
+                    <input type="email" name="email" placeholder="Correo electrónico" required>
+                    <input type="password" name="password" placeholder="Contraseña" required>
+
+                    <button type="submit" class="btn-enviar">Entrar</button>
+                </form>
+
+                <p>¿No tienes cuenta? <a href="{{ route('registro') }}">Regístrate</a></p>
             </div>
+        </div>
 
         </header>
         <section>
             <article id="menu_vertical">
-                <a href="{{ route('home') }}">
+
+                <img id="icono_flecha" src="{{ asset('img/menu_arrow.png') }}" alt="Abrir menú">
+                <div id="contenedor_botones">
+                    <a href="{{ route('home') }}">
                     <button id="home">🏡 Home</button>
-                </a>
-                <a href="{{ route('envios') }}">
-                    <button id="envios">📦 Envios</button>
-                </a>
-                
-                <a href="{{ route('about_us')}}">
-                    <button id="sobre_nosotros">👥 Sobre Nosotros</button>
-                </a>
-                <a href="{{ route('review')}}">
-                    <button id="review">⭐ Reseñas</button>
-                </a>
-                <a href="{{ route('faq')}}">
-                    <button id="faq">❓ Preguntas frecuentes</button>
-                </a>
-                <a href="{{ route('support')}}">
-                    <button id="atencion_al_cliente">🎧 Atencion al cliente</button>
-                </a>
+                    </a>
+                    <a href="{{ route('envios') }}">
+                        <button id="envios">📦 Envios</button>
+                    </a>
+                    
+                    <a href="{{ route('about_us')}}">
+                        <button id="sobre_nosotros">👥 Sobre Nosotros</button>
+                    </a>
+                    <a href="{{ route('review')}}">
+                        <button id="review">⭐ Reseñas</button>
+                    </a>
+                    <a href="{{ route('faq')}}">
+                        <button id="faq">❓ Preguntas frecuentes</button>
+                    </a>
+                    <a href="{{ route('support')}}">
+                        <button id="atencion_al_cliente">🎧 Atencion al cliente</button>
+                    </a>
+                </div>
             </article>
 
             <article id="infoPrincipal">

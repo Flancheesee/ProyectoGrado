@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    background-color: #D6B87A;
 }
 
 header {
@@ -144,42 +145,90 @@ header {
     cursor: pointer;
 }
 
-section{
+section {
     display: flex;
     flex-direction: row;
+    width: 100%; 
 }
 
-#menu_vertical{
+/* --- EL CONTENEDOR DEL MENÚ --- */
+#menu_vertical {
     padding: 15px;
-    border-right: 5px black solid;
-    width: 30%;
-    height: auto;
+    border-right: 3px solid black;
+    width: 100px; 
+    transition: width 0.5s ease; 
+    overflow: hidden;
 
-    border-left: 5px solid black;
+    /* NUEVO: Esto centra la flecha en todo el espacio disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrado vertical */
+    align-items: center;     /* Centrado horizontal */
+    
+    /* Asegúrate de que el menú tenga altura para poder centrar algo dentro */
+    min-height: 500px; /* O usa 100vh si quieres que ocupe toda la pantalla */
 }
 
-#menu_vertical button{
+/* Al pasar el ratón, el menú crece */
+#menu_vertical:hover {
+    width: 1600px; 
+}
+
+#icono_flecha {
+    width: 30px; 
+    display: block;
+    cursor: pointer;
+    /* Quitamos el margin: 20px auto para que no se mueva del centro exacto */
+    margin: 0; 
+}
+
+/* Al abrir el menú, la flecha desaparece */
+#menu_vertical:hover #icono_flecha {
+    display: none; 
+}
+
+/* --- LOS BOTONES --- */
+#contenedor_botones {
+    /* Ocultamos los botones por completo cuando está cerrado */
+    display: none; 
+}
+
+/* Al abrir el menú, mostramos el contenedor de botones */
+#menu_vertical:hover #contenedor_botones {
+    display: block;
+    /* Animación para que aparezcan suavemente */
+    animation: aparecerBotones 0.5s ease forwards;
+}
+
+#menu_vertical a {
+    text-decoration: none; 
+}
+
+#menu_vertical button {
     padding: 10px;
     margin-top: 15px;
     display: flex;
-    flex-direction: row;
-    width: 170px;
+    align-items: center; 
+    width: 190px; 
     height: 40px;
+    white-space: nowrap; 
+    cursor: pointer;
 }
 
-#pagina_principal{
-    width: 70%;
-    height: auto;
+/* --- ANIMACIÓN SUAVE --- */
+@keyframes aparecerBotones {
+    0% { opacity: 0; }
+    50% { opacity: 0; } 
+    100% { opacity: 1; }
 }
 
-#infoPrincipal{
-    width: 80%;
+/* 4. EL CONTENIDO PRINCIPAL */
+#infoPrincipal {
+    flex-grow: 1; 
     margin-left: 10px;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
-    justify-content: center;
-
-    border-right: 5px solid black;
+    border-right: 3px solid black;
 }
 
 footer{
@@ -188,6 +237,6 @@ footer{
     text-align: center;
     justify-content: center;
 
-    border-top: 5px solid black;
+    border-top: 3px solid black;
 
 }
