@@ -10,15 +10,14 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('vehiculos', function (Blueprint $table) {
-            $table->id();
-            $table->string('matricula')->unique();
-            $table->string('nombre');
-            $table->foreignId('conductor_id')->nullable()->constrained('trabajadores');
-            $table->timestamps();
-        });
-    }
+        {
+            Schema::create('vehiculos', function (Blueprint $table) {
+                $table->string('matricula')->primary(); // String, no ID numérico
+                $table->string('nombre');
+                $table->string('modelo')->nullable();
+                $table->timestamps();
+            });
+        }
 
     /**
      * Reverse the migrations.
