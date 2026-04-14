@@ -12,7 +12,7 @@
         <header>
 
             <div id="logo">
-                <img src="" alt="logo">
+                <img src="{{ asset('img/place_logo.png') }}" alt="logo">
             </div>
    
             <div id="infoYredes">

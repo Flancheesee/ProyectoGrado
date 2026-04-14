@@ -9,7 +9,9 @@
     <body>
         <header>
             <h1>MOVE IT</h1>
-            <img src="{{ asset('img/place_logo.png') }}" alt="Logo">
+            <a href="{{ route('home') }}">
+                <img src="{{ asset('img/place_logo.png') }}" alt="Logo">
+            </a>
         </header>
 
         <form id="registro" enctype="multipart/form-data">

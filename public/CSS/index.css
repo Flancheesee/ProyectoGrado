@@ -17,11 +17,13 @@ header {
     background-color: #F1D3A6;
 }
 
+#logo{
+    background-color:transparent;
+}
+
 #logo img {
     width: 110px;
     height: 110px;
-    border-radius: 50%;
-    border: 2px solid #000;
     object-fit: cover;
     background-color: transparent;
 }
