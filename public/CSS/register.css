@@ -1,0 +1,101 @@
+@import url("index.css");
+
+header{
+    border: 0px;
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+header *{
+    background-color: transparent;
+}
+
+header img{
+    width: 125px;
+    height: 125px;
+    align-self: center;
+}
+
+body {
+    width: 80%;
+    height: 600px;
+    margin: 0 auto;
+    margin-top: 20px; 
+    display: flex;
+    flex-direction: column; 
+
+    border-radius: 2px;
+    align-items: center;
+    
+}
+
+.title{
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+#registro {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px; 
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #F9F0E7;
+    border-radius: 15px;
+}
+
+/* Estilo para todos los inputs de texto, email, tel y password */
+
+#registro input[type="text"],
+#registro input[type="email"],
+#registro input[type="password"],
+#registro input[type="telefono"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#registro input[type="file"] {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #F9F0E7;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#registro label{
+    background-color: transparent;
+}
+
+.btn-enviar {
+    padding: 15px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-enviar:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+/* Estilo para cuando el usuario hace clic en un input */
+#registro input:focus {
+    outline: none;
+    border-color: #666;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
