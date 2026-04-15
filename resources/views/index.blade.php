@@ -37,17 +37,26 @@
                 </div>
             </div>
 
-            <div id="usuario" onclick="toggleLogin()" style="cursor: pointer;">
+            <div id="usuario" onclick="toggleLogin()" style="cursor: pointer; display: flex; align-items: center; gap: 10px;">
                 @auth
                     @if(Auth::user()->foto_perfil)
-                        <img src="{{ asset('storage/' . Auth::user()->foto_perfil) }}" alt="Perfil" style="width: 30px; border-radius: 50%;">
+                        <img src="{{ asset('storage/' . Auth::user()->foto_perfil) }}" 
+                            alt="Perfil" 
+                            style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 1px solid black;">
                     @else
                         <img src="{{ asset('img/default_user.png') }}" alt="Por defecto" style="width: 30px;">
                     @endif
-                    <p id="nickname">{{ Auth::user()->mote }}</p>
+                    
+                    <p id="nickname" style="margin: 0; font-weight: bold;">{{ Auth::user()->mote }}</p>
+                    
+                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit" style="background: none; border: none; cursor: pointer; font-size: 12px; color: red;">(Salir)</button>
+                    </form>
+
                 @else
-                    <img src="{{ asset('img/default_user.png') }}" alt="Invitado" style="width: 30px;">
-                    <p id="nickname">Inicia sesión</p>
+                    <img src="{{ asset('img/default_user.png') }}" alt="" style="width: 30px;">
+                    <p id="nickname" style="margin: 0;">Inicia sesión</p>
                 @endauth
             </div>
         </header>
@@ -56,7 +65,7 @@
             <div class="modal-content">
                 <span class="close-btn" onclick="toggleLogin()">&times;</span>
                 <h2>Inicia Sesión</h2>
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('login.post') }}" method="POST">
                     @csrf
                     <input type="email" name="email" placeholder="Correo electrónico" required>
                     <input type="password" name="password" placeholder="Contraseña" required>

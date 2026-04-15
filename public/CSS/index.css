@@ -34,6 +34,10 @@ header {
     opacity: 0;
 }
 
+#usuario form{
+    background-color: transparent;
+}
+
 #logo{
     background-color:transparent;
 }
@@ -102,33 +106,44 @@ header {
 #usuario {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    /* Cambiamos justify-content a flex-start para que la imagen mande */
+    justify-content: flex-start; 
+    gap: 12px;
 
     border: 2px solid #000;
-    padding: 8px 10px;
+    padding: 6px 12px; /* Ajustamos un poco el padding */
     border-radius: 8px;
     background-color: #7B5A37;
+    min-width: 140px; /* Le damos un ancho mínimo para que no baile al cambiar el texto */
 }
 
 #usuario img {
-    width: 32px;
-    height: 32px;
     background-color: transparent;
-    
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0; /* Evita que la imagen se aplaste si el nombre es largo */
 }
 
-#usuario p{
+#usuario p {
     background-color: transparent;
+    margin: 0;
+    font-weight: bold;
+    color: #000;
+    white-space: nowrap; /* Evita que el nombre salte de línea */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Si el mote es larguísimo, pone "..." */
 }
 
 #usuario button {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border: none;
+    /* Usamos un filtro para que la flecha se vea mejor si el fondo es oscuro */
     background: url("data:image/svg+xml;utf8,<svg fill='black' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>") center/contain no-repeat;
     cursor: pointer;
-    background-color: #7B5A37;
+    background-color: transparent; /* Importante: transparent */
+    flex-shrink: 0;
+    margin-left: auto; /* ¡TRUCO! Empuja el botón a la derecha del todo */
 }
 
 .modal-overlay {
