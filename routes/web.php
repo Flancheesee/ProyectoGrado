@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+
+/* -- RUTAS DE BLADE --*/
 
 Route::redirect('/', '/home');
 
@@ -32,6 +35,9 @@ Route::get('support', function(){
 Route::get('/registro', function(){
     return view('registro');
 })-> name('registro');
+
+/* -- RUTAS DE CONTROLADORES --*/
+Route::post('/registro', [RegisterController::class, 'store'])->name('register.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

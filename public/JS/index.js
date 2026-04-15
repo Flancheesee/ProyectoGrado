@@ -1,3 +1,6 @@
+let ultimaPosicion = window.pageYOffset;
+const menu = document.getElementById("menu");
+
 function toggleLogin() {
     var modal = document.getElementById("loginModal");
     if (modal.style.display === "block") {
@@ -6,6 +9,18 @@ function toggleLogin() {
         modal.style.display = "block";
     }
 }
+
+window.addEventListener("scroll", function() {
+    let posicionActual = window.pageYOffset;
+
+    if(posicionActual > ultimaPosicion && posicionActual > 150){
+        menu.classList.add("oculto");
+    } else {
+        menu.classList.remove("oculto");
+    }
+
+    ultimaPosicion = posicionActual;
+});
 
 // Cerrar si el usuario hace clic fuera de la cajita blanca
 window.onclick = function(event) {
