@@ -37,6 +37,10 @@ Route::get('/registro', function(){
     return view('registro');
 })-> name('registro');
 
+Route::get('/cuenta', function () {
+    return view('cuenta'); // Asegúrate de tener el archivo resources/views/cuenta.blade.php
+})->name('cuenta')->middleware('auth');
+
 /* -- RUTAS DE CONTROLADORES --*/
 Route::post('/registro', [RegisterController::class, 'store'])->name('register.store');
 

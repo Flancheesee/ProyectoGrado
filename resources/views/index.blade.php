@@ -37,28 +37,27 @@
                 </div>
             </div>
 
-            <div id="usuario" onclick="toggleLogin()" style="cursor: pointer; display: flex; align-items: center; gap: 10px;">
-                @auth
+            @auth
+                <div id="usuario" onclick="window.location.href='{{ route('cuenta') }}'">
                     @if(Auth::user()->foto_perfil)
-                        <img src="{{ asset('storage/' . Auth::user()->foto_perfil) }}" 
-                            alt="Perfil" 
-                            style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover; border: 1px solid black;">
+                        <img src="{{ asset('storage/' . Auth::user()->foto_perfil) }}" alt="Perfil" class="user-avatar">
                     @else
-                        <img src="{{ asset('img/default_user.png') }}" alt="Por defecto" style="width: 30px;">
+                        <img src="{{ asset('img/default_user.png') }}" alt="Por defecto" class="user-avatar">
                     @endif
                     
-                    <p id="nickname" style="margin: 0; font-weight: bold;">{{ Auth::user()->mote }}</p>
+                    <p id="nickname">{{ Auth::user()->mote }}</p>
                     
-                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    <form action="{{ route('logout') }}" method="POST" class="logout-form" onclick="event.stopPropagation()">
                         @csrf
-                        <button type="submit" style="background: none; border: none; cursor: pointer; font-size: 12px; color: red;">(Salir)</button>
+                        <button type="submit" class="btn-logout">Salir</button>
                     </form>
-
-                @else
-                    <img src="{{ asset('img/default_user.png') }}" alt="" style="width: 30px;">
-                    <p id="nickname" style="margin: 0;">Inicia sesión</p>
-                @endauth
-            </div>
+                </div>
+            @else
+                <div id="usuario" onclick="toggleLogin()">
+                    <img src="{{ asset('img/default_user.png') }}" alt="Invitado" class="user-avatar">
+                    <p id="nickname">Inicia sesión</p>
+                </div>
+            @endauth
         </header>
 
         <div id="loginModal" class="modal-overlay">
@@ -111,5 +110,20 @@
             <h1>FOOTER</h1>
         </footer>
         <script src="{{ asset('js/index.js') }}"></script>
+        @if($errors->any())
+        <script>
+            // Si hay algún error en el formulario (login o registro), salta esta alerta
+            alert("Los datos introducidos son incorrectos. Por favor, inténtalo de nuevo.");
+            
+            toggleLogin(); 
+        </script>
+        @endif
+
+        @if(session('success'))
+            <script>
+                // Si te has registrado correctamente y el controlador envía un mensaje de éxito
+                alert("{{ session('success') }}");
+            </script>
+        @endif
     </body>
 </html>

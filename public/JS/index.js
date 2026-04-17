@@ -23,6 +23,7 @@ window.addEventListener("scroll", function() {
 });
 
 // Cerrar si el usuario hace clic fuera de la cajita blanca
+
 window.onclick = function(event) {
     var modal = document.getElementById("loginModal");
     if (event.target == modal) {
