@@ -38,7 +38,7 @@ Route::get('/registro', function(){
 })-> name('registro');
 
 Route::get('/cuenta', function () {
-    return view('cuenta'); // Asegúrate de tener el archivo resources/views/cuenta.blade.php
+    return view('cuenta');
 })->name('cuenta')->middleware('auth');
 
 /* -- RUTAS DE CONTROLADORES --*/

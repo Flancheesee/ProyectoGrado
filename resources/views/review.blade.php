@@ -38,7 +38,11 @@
             </div>
 
             @auth
-                <div id="usuario" onclick="window.location.href='{{ route('cuenta') }}'">
+                <div id="usuario" 
+                    data-url="{{ route('cuenta') }}" 
+                    onclick="window.location.href=this.getAttribute('data-url');" 
+                    style="cursor: pointer;">
+                    
                     @if(Auth::user()->foto_perfil)
                         <img src="{{ asset('storage/' . Auth::user()->foto_perfil) }}" alt="Perfil" class="user-avatar">
                     @else
