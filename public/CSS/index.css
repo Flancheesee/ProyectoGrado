@@ -1,25 +1,52 @@
 *{
     box-sizing: border-box;
+    background-color: #D6B87A;
 }
 
 header {
-    width: 100%;
-    padding: 20px 30px;
-    border: 2px solid #000;
-    border-radius: 10px;
-    box-sizing: border-box;
+    /* Centrado absoluto para elementos fixed */
+    position: fixed;
+    top: 20px;       /* Separación del techo */
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 98vw;     
+    max-width: none;
+    z-index: 1000;   
 
     display: flex;
+    justify-content: space-between; 
     align-items: center;
     gap: 30px;
+    padding: 10px 30px;
+    box-sizing: border-box;
+
+    background-color: #F1D3A6;
+    border: 2px solid black;
+    border-radius: 10px;
+    transition: all 1s ease; 
+}
+
+/* --- CLASES PARA EL HEADER --- */
+
+.oculto {
+    transform: translate(-50%, -150%); 
+    opacity: 0;
+}
+
+#usuario form{
+    background-color: transparent;
+}
+
+#logo{
+    background-color:transparent;
 }
 
 #logo img {
     width: 110px;
     height: 110px;
-    border-radius: 50%;
-    border: 2px solid #000;
     object-fit: cover;
+    background-color: transparent;
 }
 
 #infoYredes {
@@ -28,12 +55,14 @@ header {
     justify-content: center;
     flex-grow: 1;
     gap: 10px;
+    background-color: transparent;
 }
 
 #informacion {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    background-color: transparent;
 }
 
 #informacion p {
@@ -42,12 +71,18 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
+    background-color: transparent;
 }
 
 #redes {
     display: flex;
     justify-content: center;
     gap: 40px;
+    background-color: transparent;
+}
+
+#redes span {
+    background-color: transparent;
 }
 
 #redes p {
@@ -55,73 +90,265 @@ header {
     display: flex;
     align-items: center;
     gap: 6px;
+    background-color: transparent;
 }
 
 #redes img {
     width: 28px;
     height: 28px;
+    background-color: transparent;
+}
+
+#redes a{
+    background-color: transparent;
 }
 
 #usuario {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    justify-content: flex-start; 
+    gap: 12px;
 
     border: 2px solid #000;
-    padding: 8px 10px;
+    padding: 6px 12px; 
     border-radius: 8px;
+    background-color: #7B5A37;
+    min-width: 140px; 
 }
 
 #usuario img {
-    width: 32px;
-    height: 32px;
+    background-color: transparent;
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+}
+
+#usuario p {
+    background-color: transparent;
+    margin: 0;
+    font-weight: bold;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
 
 #usuario button {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border: none;
     background: url("data:image/svg+xml;utf8,<svg fill='black' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>") center/contain no-repeat;
     cursor: pointer;
+    background-color: transparent; 
+    flex-shrink: 0;
+    margin-left: auto; 
 }
 
-section{
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1050; 
+    
+    background-color: rgba(0, 0, 0, 0.4); 
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* Soporte para Safari */
+    
+    transition: all 0.7s ease;
+}
+
+/* Caja del formulario */
+
+.modal-content {
+    background-color: #D6B87A;
+    margin: 10% auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-content input {
+    width: 90%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.btn-enviar {
+    background-color: #3490dc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+section {
+    border-top: 2px solid black;
     display: flex;
     flex-direction: row;
+    width: 98vw;
+
+    margin-top: 140px; 
 }
 
-#menu_vertical{
+#usuario {
+    display: inline-flex;    
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pointer;
+    padding: 10px 20px;
+    
+    background-color: #7B5A37;
+    border: 2px solid #000;
+    border-radius: 12px;
+    
+    /* Dinamismo */
+    width: auto;
+    min-width: 180px; 
+    max-width: 350px;
+    box-sizing: border-box;
+}
+
+/* Imagen de perfil*/
+.user-avatar {
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: contain;      /* 'contain' es mejor para iconos como el camioncito */
+    border-radius: 0 !important; /* Forzamos a que NO sea un círculo */
+    border: none !important;    /* Quitamos cualquier borde negro de la imagen */
+    background-color: transparent;
+    flex-shrink: 0;
+}
+
+#nickname {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.logout-form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.btn-logout {
+    background: none !important; 
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ff0000;
+    font-weight: bold;
+    padding: 0;
+    margin-left: 8px;
+
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.btn-logout:hover {
+    color: #ff0000;
+    text-decoration: underline;
+}
+
+/* --- EL CONTENEDOR DEL MENÚ --- */
+
+#menu_vertical {
     padding: 15px;
-    border-right: 5px black solid;
-    width: 30%;
-    height: auto;
+    border-right: 3px solid black;
+    width: 100px; 
+    transition: width 0.5s ease; 
+    overflow: hidden;
 
-    border-left: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;     
+    
+
+    min-height: 500px;
 }
 
-#menu_vertical button{
+#menu_vertical:hover {
+    width: 1600px; 
+}
+
+#icono_flecha {
+    width: 30px; 
+    display: block;
+    cursor: pointer;
+
+    margin: 0; 
+}
+
+#menu_vertical:hover #icono_flecha {
+    display: none; 
+}
+
+/* --- LOS BOTONES --- */
+#contenedor_botones {
+
+    display: none; 
+}
+
+/* Al abrir el menú, mostramos el contenedor de botones */
+#menu_vertical:hover #contenedor_botones {
+    display: block;
+    animation: aparecerBotones 0.5s ease forwards;
+}
+
+#menu_vertical a {
+    text-decoration: none; 
+}
+
+#menu_vertical button {
     padding: 10px;
     margin-top: 15px;
     display: flex;
-    flex-direction: row;
-    width: 170px;
+    align-items: center; 
+    width: 190px; 
     height: 40px;
+    white-space: nowrap; 
+    cursor: pointer;
 }
 
-#pagina_principal{
-    width: 70%;
-    height: auto;
+/* --- ANIMACIÓN SUAVE --- */
+@keyframes aparecerBotones {
+    0% { opacity: 0; }
+    50% { opacity: 0; } 
+    100% { opacity: 1; }
 }
 
-#infoPrincipal{
-    width: 80%;
+/* --- CONTENIDO PRINCIPAL --- */
+#infoPrincipal {
+    flex-grow: 1; 
     margin-left: 10px;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
-    justify-content: center;
-
-    border-right: 5px solid black;
+    border-right: 3px solid black;
 }
 
 footer{
@@ -130,6 +357,6 @@ footer{
     text-align: center;
     justify-content: center;
 
-    border-top: 5px solid black;
+    border-top: 3px solid black;
 
 }
