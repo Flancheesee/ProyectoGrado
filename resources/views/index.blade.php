@@ -89,9 +89,6 @@
                         <button id="envios">📦 Envios</button>
                     </a>
                     
-                    <a href="{{ route('about_us')}}">
-                        <button id="sobre_nosotros">👥 Sobre Nosotros</button>
-                    </a>
                     <a href="{{ route('review')}}">
                         <button id="review">⭐ Reseñas</button>
                     </a>
@@ -105,8 +102,36 @@
             </article>
 
             <article id="infoPrincipal">
-    
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque similique rem minima, nihil dolorem inventore veritatis accusamus. Pariatur accusamus quia deserunt veritatis perspiciatis! Dolorum error dolores laboriosam, quod iusto consequatur ad libero sit porro pariatur, exercitationem aspernatur dolor. Quia dolor officia, est odit ipsum consectetur odio libero pariatur earum facilis, asperiores beatae porro quod totam labore sunt veniam modi. Tempora esse quaerat dolorum fugit soluta. Tempora corporis alias tenetur, natus dolores voluptatem dolorem voluptates quo exercitationem consequatur, delectus reiciendis doloribus! Suscipit sit repellendus magnam nostrum, deserunt, culpa nulla atque, doloremque veritatis voluptas ipsum nihil dolorum aliquam repudiandae sint pariatur quis placeat alias laudantium cum. Provident doloribus quidem assumenda ad ipsum. Dignissimos ipsum voluptas itaque similique unde temporibus perspiciatis eius, dolores aperiam possimus minima vero omnis, sit excepturi? Blanditiis eaque labore laboriosam quibusdam beatae fugit, quisquam unde, error, ducimus enim rerum nesciunt. Exercitationem error aliquam beatae ullam, vel tempora, molestiae placeat facere dolor vitae expedita aut enim optio at sed suscipit? Quam iste voluptas quo natus tempore atque aut porro, a nobis deserunt necessitatibus magni laborum culpa, commodi deleniti sed, consectetur est vitae beatae. Recusandae tempora suscipit dolore amet rem aut odit illum perferendis nemo hic temporibus esse, quisquam maiores quidem.</p>
+                <div id="tituloHome">
+                    <h1>BIENVENIDO A MOVE IT</h1>
+                </div>
+
+                <p class="texto-bienvenida">
+                    Bienvenido a <b>MOVE IT</b> la empresa numero 1 en mudanzas en toda la peninsula. Si tienes que mudarte y no sabes como ¡solo llamanos!
+                </p>
+
+                <div id="introduccion" class="home">
+                    <div id="inicio" class="seccion-flex">
+                        <div class="texto">
+                            <h2>INICIOS</h2>
+                            <p><b>MOVE IT</b> fue fundada en 2026 por Francisco Martin Jeronimo. La idea detras de esta aplicación surgio tras ver como ninguna empresa de mudanzas tenia buena reputación. Si nos eliges a nosotros nos encargaremos de que tu servicio sea el <b>mejor</b> posible.</p>
+                        </div>
+                        <img class="presentacion" src="{{ asset('img/inicio_empresa.jpg') }}" alt="Inicios">
+                    </div>
+
+                    <div id="nosotros" class="seccion-flex">
+                        <img class="presentacion" src="{{ asset('img/home_trabajo.jpg') }}" alt="Nosotros">
+                        <div class="texto">
+                            <h3>¿Porque elegirnos a nosotros?</h3>
+                            <p>Si no nos conoces, seguramente no seamos tu unica opción, pero nuestros clientes siempre nos recomiendan a sus conocidos. Ofrecemos un servicio de seguridad el cual garantiza que el 100% de tus articulos llegara en el mismo estado en el que se embalaron.</p>
+                        </div>
+                    </div>
+
+                    <div id="enlace_mudanza">
+                        <h3>Unete a nuestros clientes y haz tu mudanza con nosotros</h3>
+                        <a class="btn-directo" href="{{ route('envios')}}">Ir a mudanzas</a>
+                    </div>
+                </div>
             </article>
         </section>
 

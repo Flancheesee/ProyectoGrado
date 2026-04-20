@@ -13,10 +13,6 @@ Route::get('/home', function () {
     return view('index');
 })-> name('home');
 
-Route::get('/about_us', function () {
-    return view('about_us');
-})-> name('about_us');
-
 Route::get('envios', function (){
     return view('envios');
 })-> name('envios');

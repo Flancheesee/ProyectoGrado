@@ -293,7 +293,7 @@ section {
 }
 
 #menu_vertical:hover {
-    width: 1600px; 
+    width: 400px; 
 }
 
 #icono_flecha {
@@ -344,11 +344,50 @@ section {
 
 /* --- CONTENIDO PRINCIPAL --- */
 #infoPrincipal {
-    flex-grow: 1; 
-    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     padding: 20px;
-    text-align: center;
-    border-right: 3px solid black;
+}
+
+#infoPrincipal {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+}
+
+#infoPrincipal p{
+    font-size: 20px;
+}
+
+#introduccion {
+    display: flex;
+    flex-direction: column;
+    gap: 50px; 
+}
+
+.seccion-flex {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.seccion-flex .texto {
+    flex: 1;
+}
+
+.presentacion {
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+#enlace_mudanza{
+    align-items: center;
 }
 
 footer{
