@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MOVE IT</title>
+        <title>MOVE IT - ENVIOS</title>
         <link rel="stylesheet" href="{{ asset('CSS/envios.css') }}">
     </head>
 
@@ -153,53 +153,62 @@
         <!-- FORMULARIO PARA MUDANZA -->
 
         <div id="overlayMudanza" class="modal-overlay" onclick="toggleMudanza()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="toggleMudanza()">&times;</span>
-            
-            <h2>Solicitar Nueva Mudanza</h2>
-            <p>Introduce los detalles para calcular tu presupuesto.</p>
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <span class="close-btn" onclick="toggleMudanza()">&times;</span>
+                <h2>Solicitar Nueva Mudanza</h2>
 
-            <form action="{{ route('mudanzas.store') }}" method="POST">
-                @csrf
-                
-                <div class="form-group-row">
-                    <div class="input-box">
-                        <label>Tipo Vivienda</label>
-                        <select name="tipo_origen">
-                            <option value="piso">Piso</option>
-                            <option value="casa">Casa/Chalet</option>
-                            <option value="oficina">Oficina</option>
-                        </select>
-                    </div>
-                    <div class="input-box">
-                        <label>Dirección Origen</label>
-                        <input type="text" name="origen" placeholder="Calle, número, piso..." required>
-                    </div>
-                </div>
+                <p>Introduce los detalles para calcular tu presupuesto.</p> 
 
-                <div class="form-group-row">
-                    <div class="input-box">
-                        <label>Tipo Vivienda</label>
-                        <select name="tipo_destino">
-                            <option value="piso">Piso</option>
-                            <option value="casa">Casa/Chalet</option>
-                            <option value="oficina">Oficina</option>
-                        </select>
+                <form action="{{ route('mudanzas.store') }}" method="POST">
+                    @csrf
+                    
+                    <div class="form-group-row">
+                        <div class="input-box">
+                            <label>Tipo Vivienda</label>
+                            <select name="tipo_origen">
+                                <option value="piso">Piso</option>
+                                <option value="casa">Casa/Chalet</option>
+                                <option value="oficina">Oficina</option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <label>Dirección Origen</label>
+                            <input type="text" name="direccion_origen" value="{{ old('direccion_origen') }}" placeholder="Calle, número, piso..." required>
+                            @error('direccion_origen') 
+                                <span style="color: red; font-size: 0.8rem; margin-top: 5px;">{{ $message }}</span> 
+                            @enderror
+                        </div>
                     </div>
-                    <div class="input-box">
-                        <label>Dirección Destino</label>
-                        <input type="text" name="destino" placeholder="Calle, número, piso..." required>
+
+                    <div class="form-group-row">
+                        <div class="input-box">
+                            <label>Tipo Vivienda</label>
+                            <select name="tipo_destino">
+                                <option value="piso">Piso</option>
+                                <option value="casa">Casa/Chalet</option>
+                                <option value="oficina">Oficina</option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <label>Dirección Destino</label>
+                            <input type="text" name="direccion_destino" value="{{ old('direccion_destino') }}" placeholder="Calle, número, piso..." required>
+                            @error('direccion_destino') 
+                                <span style="color: red; font-size: 0.8rem; margin-top: 5px;">{{ $message }}</span> 
+                            @enderror
+                        </div>
                     </div>
-                </div>
 
-                <div class="input-box full">
-                    <label>Fecha deseada</label>
-                    <input type="date" name="fecha_mudanza" required>
-                </div>
+                    <div class="input-box full">
+                        <label>Fecha deseada</label>
+                        <input type="date" name="fecha_mudanza" value="{{ old('fecha_mudanza') }}" required>
+                        @error('fecha_mudanza') 
+                            <span style="color: red; font-size: 0.8rem; margin-top: 5px;">{{ $message }}</span> 
+                        @enderror
+                    </div>
 
-                <button type="submit" class="btn-enviar-mudanza">Confirmar Solicitud</button>
-            </form>
+                    <button type="submit" class="btn-enviar-mudanza">Confirmar Solicitud</button>
+                </form>
+            </div>
         </div>
-    </div>
     </body>
 </html>

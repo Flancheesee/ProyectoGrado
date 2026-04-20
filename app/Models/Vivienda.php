@@ -9,23 +9,20 @@ class Vivienda extends Model
 {
     use HasFactory;
 
-    protected $table = 'VIVIENDA';
-    protected $primaryKey = 'ID_VIVIENDA';
+    protected $table = 'vivienda';
+    protected $primaryKey = 'vivienda_id';
+
 
     protected $fillable = [
-        'Direccion',
-        'Nombre',
-        'Tipo'
+        'user_id',
+        'nombre',
+        'tipo',
+        'direccion'
     ];
 
-    // Relación: Una vivienda puede estar en muchas mudanzas (como origen o destino)
-    public function mudanzasOrigen()
+    public function mudanzas()
     {
+        // Una vivienda puede estar en muchas mudanzas
         return $this->hasMany(Mudanza::class, 'Vivienda_origen', 'ID_VIVIENDA');
-    }
-
-    public function mudanzasDestino()
-    {
-        return $this->hasMany(Mudanza::class, 'Vivienda_destino', 'ID_VIVIENDA');
     }
 }

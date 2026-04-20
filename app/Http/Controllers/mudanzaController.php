@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class MudanzaController extends Controller
 {
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $request->validate([
             'direccion_origen' => 'required|string',
             'direccion_destino' => 'required|string',
@@ -34,17 +33,17 @@ class MudanzaController extends Controller
                 'Tipo' => $request->tipo_destino ?? 'piso'
             ]);
 
-            // 3. Crear Mudanza con tu estructura exacta
+            // 3. Crear Mudanza
             Mudanza::create([
-                'num_empleados' => 0, // Se asignarán después
-                'num_vehiculos' => 0, // Se asignarán después
-                'Vivienda_origen' => $origen->id, 
-                'Vivienda_destino' => $destino->id,
-                'mote_usuario' => Auth::user()->user_id // Tu FK a USUARIO
+                'num_empleados' => 0,
+                'num_vehiculos' => 0,
+                'Vivienda_origen' => $origen->ID_VIVIENDA, // USAMOS LA PK REAL
+                'Vivienda_destino' => $destino->ID_VIVIENDA, // USAMOS LA PK REAL
+                'mote_usuario' => Auth::user()->user_id 
             ]);
 
             DB::commit();
-            return redirect()->back()->with('success', 'Mudanza solicitada. Calculando ruta...');
+            return redirect()->back()->with('success', '¡Mudanza solicitada con éxito!');
 
         } catch (\Exception $e) {
             DB::rollBack();

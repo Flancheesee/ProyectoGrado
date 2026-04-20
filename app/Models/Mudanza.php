@@ -9,32 +9,27 @@ class Mudanza extends Model
 {
     use HasFactory;
 
-    protected $table = 'MUDANZA';
-    protected $primaryKey = 'ID_mudanza';
+    protected $table = 'mudanza';
+    protected $primaryKey = 'mudanza_id';
 
     protected $fillable = [
-        'num_empleados',
-        'num_vehiculos',
-        'Vivienda_origen',
-        'Vivienda_destino',
-        'mote_usuario'
+        'user_id',
+        'vivienda_origen_id',
+        'direccion_destinatario',
+        'cantidad_empleados',
+        'cantidad_vehiculos',
+        'estado'
     ];
 
-    // Relación con Usuario
-    public function usuario()
-    {
+    public function usuario() {
         return $this->belongsTo(User::class, 'mote_usuario', 'user_id');
     }
 
-    // Relación con Vivienda de Origen
-    public function origen()
-    {
+    public function origen() {
         return $this->belongsTo(Vivienda::class, 'Vivienda_origen', 'ID_VIVIENDA');
     }
 
-    // Relación con Vivienda de Destino
-    public function destino()
-    {
+    public function destino() {
         return $this->belongsTo(Vivienda::class, 'Vivienda_destino', 'ID_VIVIENDA');
     }
 }

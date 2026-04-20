@@ -31,16 +31,17 @@
 /* Formulario de mudanza*/
 
 /* El fondo que cubre toda la pantalla */
+/* Asegúrate de que esto esté en tu archivo CSS */
 .modal-overlay {
-    display: none; /* Oculto por defecto */
+    display: none; /* Importante: oculto al cargar */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Oscurece el fondo */
-    backdrop-filter: blur(8px); /* EL EFECTO DIFUMINADO */
-    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 9999; /* Valor muy alto para que esté por encima de todo */
     justify-content: center;
     align-items: center;
 }
