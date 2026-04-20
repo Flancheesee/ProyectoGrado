@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MOVE IT</title>
-        <link rel="stylesheet" href="{{ asset('CSS/index.css') }}">
+        <link rel="stylesheet" href="{{ asset('CSS/envios.css') }}">
     </head>
 
     <body>
@@ -88,10 +88,6 @@
                     <a href="{{ route('envios') }}">
                         <button id="envios">📦 Envios</button>
                     </a>
-                    
-                    <a href="{{ route('about_us')}}">
-                        <button id="sobre_nosotros">👥 Sobre Nosotros</button>
-                    </a>
                     <a href="{{ route('review')}}">
                         <button id="review">⭐ Reseñas</button>
                     </a>
@@ -106,7 +102,15 @@
 
             <article id="infoPrincipal">
     
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque similique rem minima, nihil dolorem inventore veritatis accusamus. Pariatur accusamus quia deserunt veritatis perspiciatis! Dolorum error dolores laboriosam, quod iusto consequatur ad libero sit porro pariatur, exercitationem aspernatur dolor. Quia dolor officia, est odit ipsum consectetur odio libero pariatur earum facilis, asperiores beatae porro quod totam labore sunt veniam modi. Tempora esse quaerat dolorum fugit soluta. Tempora corporis alias tenetur, natus dolores voluptatem dolorem voluptates quo exercitationem consequatur, delectus reiciendis doloribus! Suscipit sit repellendus magnam nostrum, deserunt, culpa nulla atque, doloremque veritatis voluptas ipsum nihil dolorum aliquam repudiandae sint pariatur quis placeat alias laudantium cum. Provident doloribus quidem assumenda ad ipsum. Dignissimos ipsum voluptas itaque similique unde temporibus perspiciatis eius, dolores aperiam possimus minima vero omnis, sit excepturi? Blanditiis eaque labore laboriosam quibusdam beatae fugit, quisquam unde, error, ducimus enim rerum nesciunt. Exercitationem error aliquam beatae ullam, vel tempora, molestiae placeat facere dolor vitae expedita aut enim optio at sed suscipit? Quam iste voluptas quo natus tempore atque aut porro, a nobis deserunt necessitatibus magni laborum culpa, commodi deleniti sed, consectetur est vitae beatae. Recusandae tempora suscipit dolore amet rem aut odit illum perferendis nemo hic temporibus esse, quisquam maiores quidem.</p>
+                @auth
+                    <button class="btn-mudanza-principal" onclick="toggleMudanza()">
+                        HACER UNA MUDANZA
+                    </button>
+                @else
+                    <button class="btn-mudanza-principal" onclick="notLogged()">
+                        HACER UNA MUDANZA
+                    </button>
+                @endauth
             </article>
         </section>
 
@@ -129,5 +133,73 @@
                 alert("{{ session('success') }}");
             </script>
         @endif
+
+        <!-- WARNING SI NO INICIASTE SESION -->
+
+        <div id="overlayWarning" class="modal-overlay" onclick="cerrarWarning()">
+            <div class="modal-content warning-box" onclick="event.stopPropagation()">
+                <span class="close-btn" onclick="cerrarWarning()">&times;</span>
+                <h3 style="color: #7B5A37;">¡Atención!</h3>
+                <p>Para solicitar una mudanza y gestionar tus datos, es necesario estar registrado en nuestro sistema.</p>
+                
+                <div class="botones-warning">
+                    <button class="btn-enviar-mudanza" onclick="irAlLogin()">Iniciar Sesión / Registrarse</button>
+                    <button class="btn-cancelar" onclick="cerrarWarning()">Volver</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- FORMULARIO PARA MUDANZA -->
+
+        <div id="overlayMudanza" class="modal-overlay" onclick="toggleMudanza()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="toggleMudanza()">&times;</span>
+            
+            <h2>Solicitar Nueva Mudanza</h2>
+            <p>Introduce los detalles para calcular tu presupuesto.</p>
+
+            <form action="{{ route('mudanzas.store') }}" method="POST">
+                @csrf
+                
+                <div class="form-group-row">
+                    <div class="input-box">
+                        <label>Tipo Vivienda</label>
+                        <select name="tipo_origen">
+                            <option value="piso">Piso</option>
+                            <option value="casa">Casa/Chalet</option>
+                            <option value="oficina">Oficina</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>Dirección Origen</label>
+                        <input type="text" name="origen" placeholder="Calle, número, piso..." required>
+                    </div>
+                </div>
+
+                <div class="form-group-row">
+                    <div class="input-box">
+                        <label>Tipo Vivienda</label>
+                        <select name="tipo_destino">
+                            <option value="piso">Piso</option>
+                            <option value="casa">Casa/Chalet</option>
+                            <option value="oficina">Oficina</option>
+                        </select>
+                    </div>
+                    <div class="input-box">
+                        <label>Dirección Destino</label>
+                        <input type="text" name="destino" placeholder="Calle, número, piso..." required>
+                    </div>
+                </div>
+
+                <div class="input-box full">
+                    <label>Fecha deseada</label>
+                    <input type="date" name="fecha_mudanza" required>
+                </div>
+
+                <button type="submit" class="btn-enviar-mudanza">Confirmar Solicitud</button>
+            </form>
+        </div>
+    </div>
     </body>
 </html>

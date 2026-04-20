@@ -30,3 +30,32 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+/* Funciones para envios
+    Funciones para evitar mudanza sin iniciar sesión
+*/
+
+
+function notLogged() {
+    document.getElementById('overlayWarning').style.display = 'flex';
+}
+
+function cerrarWarning() {
+    document.getElementById('overlayWarning').style.display = 'none';
+}
+
+function irAlLogin() {
+    cerrarWarning();
+    toggleLogin(); 
+}
+
+/* Funcion para abrir el formulario de mudanza*/
+
+function toggleMudanza() {
+    const modal = document.getElementById('overlayMudanza');
+    if (modal.style.display === 'flex') {
+        modal.style.display = 'none';
+    } else {
+        modal.style.display = 'flex';
+    }
+}
