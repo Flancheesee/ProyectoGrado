@@ -25,7 +25,7 @@ class LoginController extends Controller
         // 3. Si falla, volver atrás con error
         return back()->withErrors([
             'email' => 'Las credenciales no coinciden con nuestros registros.',
-        ])->onlyInput('email');
+        ], 'login')->onlyInput('email');
     }
 
     public function logout(Request $request)

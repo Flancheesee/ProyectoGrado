@@ -118,13 +118,15 @@
             <h1>FOOTER</h1>
         </footer>
         <script src="{{ asset('js/index.js') }}"></script>
-        @if($errors->any())
-        <script>
-            // Si hay algún error en el formulario (login o registro), salta esta alerta
-            alert("Los datos introducidos son incorrectos. Por favor, inténtalo de nuevo.");
-            
-            toggleLogin(); 
-        </script>
+
+        <!-- Filtro de errores login -->
+
+        @if($errors->login->any())
+            <script>
+                window.addEventListener('DOMContentLoaded', () => {
+                    toggleLogin();
+                });
+            </script>
         @endif
 
         @if(session('success'))
@@ -136,8 +138,8 @@
 
         <!-- WARNING SI NO INICIASTE SESION -->
 
-        <div id="overlayWarning" class="modal-overlay" onclick="cerrarWarning()">
-            <div class="modal-content warning-box" onclick="event.stopPropagation()">
+        <div id="overlayWarning" class="modal-overlay-mudanza" onclick="cerrarWarning()">
+            <div class="modal-content-mudanza warning-box" onclick="event.stopPropagation()">
                 <span class="close-btn" onclick="cerrarWarning()">&times;</span>
                 <h3 style="color: #7B5A37;">¡Atención!</h3>
                 <p>Para solicitar una mudanza y gestionar tus datos, es necesario estar registrado en nuestro sistema.</p>
@@ -152,8 +154,8 @@
 
         <!-- FORMULARIO PARA MUDANZA -->
 
-        <div id="overlayMudanza" class="modal-overlay" onclick="toggleMudanza()">
-            <div class="modal-content" onclick="event.stopPropagation()">
+        <div id="overlayMudanza" class="modal-overlay-mudanza" onclick="toggleMudanza()">
+            <div class="modal-content-mudanza" onclick="event.stopPropagation()">
                 <span class="close-btn" onclick="toggleMudanza()">&times;</span>
                 <h2>Solicitar Nueva Mudanza</h2>
 
@@ -161,6 +163,8 @@
 
                 <form action="{{ route('mudanzas.store') }}" method="POST">
                     @csrf
+
+                    <!-- VIVIENDA -->
                     
                     <div class="form-group-row">
                         <div class="input-box">
@@ -173,9 +177,9 @@
                         </div>
                         <div class="input-box">
                             <label>Dirección Origen</label>
-                            <input type="text" name="direccion_origen" value="{{ old('direccion_origen') }}" placeholder="Calle, número, piso..." required>
-                            @error('direccion_origen') 
-                                <span style="color: red; font-size: 0.8rem; margin-top: 5px;">{{ $message }}</span> 
+                            <input type="text" name="direccion_origen" value="{{ old('direccion_origen') }}" required>
+                            @error('direccion_origen', 'mudanza') 
+                                <span style="color:red;">{{ $message }}</span> 
                             @enderror
                         </div>
                     </div>
@@ -191,22 +195,58 @@
                         </div>
                         <div class="input-box">
                             <label>Dirección Destino</label>
-                            <input type="text" name="direccion_destino" value="{{ old('direccion_destino') }}" placeholder="Calle, número, piso..." required>
-                            @error('direccion_destino') 
-                                <span style="color: red; font-size: 0.8rem; margin-top: 5px;">{{ $message }}</span> 
+                            <input type="text" name="direccion_destino" value="{{ old('direccion_destino') }}" required>
+                            @error('direccion_destino', 'mudanza') 
+                                <span style="color:red;">{{ $message }}</span> 
                             @enderror
                         </div>
                     </div>
 
+                    <!-- FECHA -->
+
                     <div class="input-box full">
                         <label>Fecha deseada</label>
                         <input type="date" name="fecha_mudanza" value="{{ old('fecha_mudanza') }}" required>
-                        @error('fecha_mudanza') 
-                            <span style="color: red; font-size: 0.8rem; margin-top: 5px;">{{ $message }}</span> 
+                        @error('fecha_mudanza', 'mudanza') 
+                            <span style="color:red;">{{ $message }}</span> 
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn-enviar-mudanza">Confirmar Solicitud</button>
+                    <!-- EMPLEADOS -->
+                    <div class="input-box full">
+                        <label>Cantidad de empleados</label>
+                        <input type="number" name="cantidad_empleados" min="1" value="{{ old('cantidad_empleados', 1) }}" required>
+                        @error('cantidad_empleados', 'mudanza') 
+                            <span style="color:red;">{{ $message }}</span> 
+                        @enderror
+                    </div>
+
+                    <!-- VEHÍCULOS -->
+                    <div class="input-box full">
+                        <label>Selecciona un vehículo</label>
+
+                        <div class="mudanza-vehiculo">
+                            @for($i = 1; $i <= 4; $i++)
+                                <label class="vehicle-option">
+                                    <input type="radio" name="vehiculo" value="camion{{ $i }}"
+                                        {{ old('vehiculo') == "camion$i" ? 'checked' : '' }} required>
+                                    
+                                    <div class="vehicle-card">
+                                        <img src="{{ asset('IMG/Vehiculos/camion'.$i.'.png') }}" alt="Camión {{ $i }}">
+                                        <span>Vehículo {{ $i }}</span>
+                                    </div>
+                                </label>
+                            @endfor
+                        </div>
+
+                        @error('vehiculo', 'mudanza') 
+                            <span style="color:red;">{{ $message }}</span> 
+                        @enderror
+                    </div>
+
+                    <button type="submit" class="btn-enviar-mudanza">
+                        Confirmar Solicitud
+                    </button>
                 </form>
             </div>
         </div>

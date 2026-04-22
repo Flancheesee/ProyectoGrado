@@ -1,53 +1,64 @@
 <?php
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use App\Models\Vivienda;
 use App\Models\Mudanza;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class MudanzaController extends Controller
 {
-    public function store(Request $request) {
-        $request->validate([
+    public function store(Request $request) 
+    {
+        $validator = Validator::make($request->all(), [
             'direccion_origen' => 'required|string',
             'direccion_destino' => 'required|string',
+            'tipo_origen' => 'required',
+            'tipo_destino' => 'required',
             'fecha_mudanza' => 'required|date|after:today',
         ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator, 'mudanza')->withInput();
+        }
+
+        $data = $validator->validated();
 
         try {
             DB::beginTransaction();
 
-            // 1. Crear Vivienda Origen
-            $origen = Vivienda::create([
-                'Direccion' => $request->direccion_origen,
-                'Nombre' => 'Origen',
-                'Tipo' => $request->tipo_origen ?? 'piso'
+            $viviendaOrigen = Vivienda::create([
+                'user_id'   => Auth::id(),
+                'nombre'    => 'Origen: ' . Auth::user()->mote,
+                'tipo'      => $data['tipo_origen'],
+                'direccion' => $data['direccion_origen'],
             ]);
 
-            // 2. Crear Vivienda Destino
-            $destino = Vivienda::create([
-                'Direccion' => $request->direccion_destino,
-                'Nombre' => 'Destino',
-                'Tipo' => $request->tipo_destino ?? 'piso'
+            $viviendaDestino = Vivienda::create([
+                'user_id'   => Auth::id(),
+                'nombre'    => 'Destino: ' . Auth::user()->mote,
+                'tipo'      => $data['tipo_destino'],
+                'direccion' => $data['direccion_destino'],
             ]);
 
-            // 3. Crear Mudanza
             Mudanza::create([
-                'num_empleados' => 0,
-                'num_vehiculos' => 0,
-                'Vivienda_origen' => $origen->ID_VIVIENDA, // USAMOS LA PK REAL
-                'Vivienda_destino' => $destino->ID_VIVIENDA, // USAMOS LA PK REAL
-                'mote_usuario' => Auth::user()->user_id 
+                'user_id'                => Auth::id(),
+                'vivienda_origen_id'     => $viviendaOrigen->vivienda_id,
+                'direccion_destinatario' => $viviendaDestino->direccion, 
+                'cantidad_empleados'     => 0,
+                'cantidad_vehiculos'     => 0,
+                'estado'                 => 'pendiente'
             ]);
 
             DB::commit();
-            return redirect()->back()->with('success', '¡Mudanza solicitada con éxito!');
+            return redirect()->back()->with('success', '¡Mudanza y viviendas registradas!');
 
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error al guardar: ' . $e->getMessage());
         }
     }
 }

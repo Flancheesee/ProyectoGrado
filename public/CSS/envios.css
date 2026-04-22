@@ -32,7 +32,7 @@
 
 /* El fondo que cubre toda la pantalla */
 /* Asegúrate de que esto esté en tu archivo CSS */
-.modal-overlay {
+.modal-overlay-mudanza {
     display: none; /* Importante: oculto al cargar */
     position: fixed;
     top: 0;
@@ -47,7 +47,7 @@
 }
 
 /* La caja del formulario */
-.modal-content {
+.modal-content-mudanza {
     padding: 30px;
     border-radius: 15px;
     width: 90%;
@@ -82,6 +82,70 @@
     border-radius: 5px;
 }
 
+/* ESCOGER VEHICULO */
+.mudanza-vehiculo {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+/* Ocultar el circulito del radio button por completo */
+.vehicle-option input[type="radio"] {
+    display: none;
+}
+
+/* Estilo base de la tarjeta (imagen + texto) */
+.vehicle-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.vehicle-card img {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 10px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.vehicle-card span {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+/* --- ESTADOS INTERACTIVOS --- */
+
+/* Efecto hover (al pasar el ratón) */
+.vehicle-card:hover img {
+    border-color: #7B5A37;
+    transform: translateY(-5px);
+}
+
+/* EFECTO CUANDO ESTÁ SELECCIONADO */
+
+.vehicle-option input[type="radio"]:checked + .vehicle-card img {
+    border-color: #7B5A37; /* Color de tu marca */
+    background-color: #fdf5e6;
+    transform: scale(1.2); /* SE HACE MÁS GRANDE */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.vehicle-option input[type="radio"]:checked + .vehicle-card span {
+    transform: scale(1.1);
+    transition: all 0.3 ease;
+    padding-top: 10px;
+}
+
+/*-- SUBMIT --*/
+
 .btn-enviar-mudanza {
     width: 100%;
     padding: 15px;
@@ -107,4 +171,8 @@
     font-size: 25px;
     cursor: pointer;
     color: #7B5A37;
+}
+
+input[type="radio"]:checked + img {
+    border: 2px solid green;
 }
