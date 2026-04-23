@@ -215,7 +215,7 @@
                     <!-- EMPLEADOS -->
                     <div class="input-box full">
                         <label>Cantidad de empleados</label>
-                        <input type="number" name="cantidad_empleados" min="1" value="{{ old('cantidad_empleados', 1) }}" required>
+                        <input type="number" name="cantidad_empleados" min="1" max="15" value="{{ old('cantidad_empleados', 1) }}" required>
                         @error('cantidad_empleados', 'mudanza') 
                             <span style="color:red;">{{ $message }}</span> 
                         @enderror

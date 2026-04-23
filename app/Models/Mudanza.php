@@ -17,7 +17,7 @@ class Mudanza extends Model
         'vivienda_origen_id',
         'direccion_destinatario',
         'cantidad_empleados',
-        'cantidad_vehiculos',
+        'matricula_vehiculo',
         'estado'
     ];
 

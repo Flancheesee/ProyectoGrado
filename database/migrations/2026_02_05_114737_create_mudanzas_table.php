@@ -17,7 +17,13 @@ return new class extends Migration
             $table->foreignId('vivienda_origen_id')->constrained('viviendas', 'vivienda_id');
             $table->string('direccion_destinatario');
             $table->integer('cantidad_empleados');
-            $table->integer('cantidad_vehiculos');
+            $table->string('matricula_vehiculo'); 
+
+            $table->foreign('matricula_vehiculo')
+              ->references('matricula')
+              ->on('vehiculos')
+              ->onDelete('cascade');
+
             $table->enum('estado', ['pendiente', 'en_curso', 'finalizada'])->default('pendiente');
             $table->timestamps();
         });
