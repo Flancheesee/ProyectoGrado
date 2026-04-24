@@ -100,18 +100,32 @@
                 </div>
             </article>
 
-            <article id="infoPrincipal">
-    
-                @auth
-                    <button class="btn-mudanza-principal" onclick="toggleMudanza()">
-                        HACER UNA MUDANZA
-                    </button>
-                @else
-                    <button class="btn-mudanza-principal" onclick="notLogged()">
-                        HACER UNA MUDANZA
-                    </button>
-                @endauth
-            </article>
+            <article id="infoPrincipal" class="hero-section">
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <h1 class="hero-title">Tu mudanza, sin estrés y al mejor precio</h1>
+                <p class="hero-subtitle">Nos encargamos de todo para que disfrutes de tu nuevo hogar. Embalaje profesional, transporte seguro y montaje incluido.</p>
+
+                <div class="hero-cta">
+                    @auth
+                        <button class="btn-mudanza-principal" onclick="toggleMudanza()">
+                            📦 HACER UNA MUDANZA
+                        </button>
+                    @else
+                        <button class="btn-mudanza-principal" onclick="notLogged()">
+                            📦 HACER UNA MUDANZA
+                        </button>
+                    @endauth
+                </div>
+                
+                <div class="hero-features">
+                    <span>✅ Presupuesto Inmediato</span>
+                    <span>✅ Seguro a todo riesgo</span>
+                    <span>✅ Flota adaptada</span>
+                </div>
+            </div>
+        </article>
         </section>
 
         <footer>
@@ -250,5 +264,19 @@
                 </form>
             </div>
         </div>
+
+        <!-- Filtro errores mudanza-->
+         @if ($errors->hasBag('mudanza') && $errors->mudanza->any())
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    let modalMudanza = document.getElementById('overlayMudanza');
+                    
+                    if (modalMudanza) {
+                        // Forzamos a que se muestre. 
+                        modalMudanza.style.display = 'flex'; 
+                    }
+                });
+            </script>
+        @endif
     </body>
 </html>

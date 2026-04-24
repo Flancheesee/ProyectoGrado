@@ -232,9 +232,9 @@ section {
 .user-avatar {
     width: 40px !important;
     height: 40px !important;
-    object-fit: contain;      /* 'contain' es mejor para iconos como el camioncito */
-    border-radius: 0 !important; /* Forzamos a que NO sea un círculo */
-    border: none !important;    /* Quitamos cualquier borde negro de la imagen */
+    object-fit: contain;     
+    border-radius: 0 !important; 
+    border: none !important;  
     background-color: transparent;
     flex-shrink: 0;
 }
@@ -277,6 +277,7 @@ section {
 /* --- EL CONTENEDOR DEL MENÚ --- */
 
 #menu_vertical {
+    position:fixed ;
     padding: 15px;
     border-right: 3px solid black;
     width: 100px; 
@@ -293,7 +294,7 @@ section {
 }
 
 #menu_vertical:hover {
-    width: 400px; 
+    width: 250px; 
 }
 
 #icono_flecha {
@@ -342,12 +343,19 @@ section {
     100% { opacity: 1; }
 }
 
+#menu_vertical:hover + #infoPrincipal {
+    margin-left: 300px; 
+}
+
 /* --- CONTENIDO PRINCIPAL --- */
+
 #infoPrincipal {
     display: flex;
     flex-direction: column;
     gap: 30px;
     padding: 20px;
+    margin-left: 140px; 
+    transition: margin-left 0.5s ease;
 }
 
 #infoPrincipal {

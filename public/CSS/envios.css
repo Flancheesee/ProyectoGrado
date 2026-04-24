@@ -1,6 +1,134 @@
 @import url("index.css");
 
-/* Warning si no inicias sesion*/
+/*CSS Mudanza*/
+
+#infoprincipal{
+    background-color: transparent;
+}
+
+
+/*Menu lateral*/
+
+#menu_vertical{
+    position: relative;
+}
+
+#menu_vertical:hover {
+    width: 230px; 
+}
+
+/* Contenedor Principal (El Hero) */
+#infoPrincipal.hero-section {
+    position: relative;
+    background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); 
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 30px auto;
+    max-width: 1200px;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Filtro oscuro sobre la imagen para que se lea el texto */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+/* Contenido (Textos y Botones) */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 35px;
+    color: #e2e8f0;
+    font-weight: 300;
+}
+
+/* El botón de tu código */
+.btn-mudanza-principal {
+    background-color: #ff6b6b;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 16px 36px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+/* Efecto al pasar el ratón por el botón */
+.btn-mudanza-principal:hover {
+    background-color: #ee5253;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+}
+
+/* Puntos de confianza bajo el botón */
+.hero-features {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+    color: #f1f5f9;
+}
+
+.hero-features span {
+    background: rgba(255, 255, 255, 0.15); /* Fondo semi-transparente */
+    padding: 8px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px); /* Efecto cristal */
+}
+
+/* Adaptación para móviles */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .hero-features {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+    .hero-features span {
+        width: fit-content;
+    }
+}
+
+/*-- FORMULARIO MUDANZA --*/
+
+/* WARNING SI NO INICIAS SESION*/
 
 .warning-box {
     max-width: 400px;
@@ -30,10 +158,8 @@
 
 /* Formulario de mudanza*/
 
-/* El fondo que cubre toda la pantalla */
-/* Asegúrate de que esto esté en tu archivo CSS */
 .modal-overlay-mudanza {
-    display: none; /* Importante: oculto al cargar */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -41,7 +167,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(8px);
-    z-index: 9999; /* Valor muy alto para que esté por encima de todo */
+    z-index: 9999;
     justify-content: center;
     align-items: center;
 }

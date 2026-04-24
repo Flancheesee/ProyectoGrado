@@ -89,9 +89,6 @@
                         <button id="envios">📦 Envios</button>
                     </a>
                     
-                    <a href="{{ route('about_us')}}">
-                        <button id="sobre_nosotros">👥 Sobre Nosotros</button>
-                    </a>
                     <a href="{{ route('review')}}">
                         <button id="review">⭐ Reseñas</button>
                     </a>
