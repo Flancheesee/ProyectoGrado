@@ -19,7 +19,7 @@ return new class extends Migration
                 $table->string('telefono');
                 $table->decimal('sueldo', 8, 2);
                 $table->enum('rol', ['conductor', 'peon']);
-                $table->string('password'); // Siempre necesaria para el login
+                $table->string('password');
                 $table->rememberToken();
                 $table->timestamps();
             });

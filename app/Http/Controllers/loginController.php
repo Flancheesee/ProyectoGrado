@@ -28,6 +28,28 @@ class LoginController extends Controller
         ], 'login')->onlyInput('email');
     }
 
+    public function loginTrabajador(Request $request)
+    {
+        // Validamos que lleguen ambos campos
+        $credentials = $request->validate([
+            'dni'      => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        // Intentamos el login usando el guard 'worker' que configuramos antes
+        if (Auth::guard('worker')->attempt($credentials)) {
+            // Regenerar sesión por seguridad
+            $request->session()->regenerate();
+            
+            return redirect()->intended('/worker/dashboard');
+        }
+
+        // Si falla, volvemos atrás con error
+        return back()->withErrors([
+            'dni' => 'El DNI o la contraseña no coinciden con nuestros registros de empleados.',
+        ])->onlyInput('dni');
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
