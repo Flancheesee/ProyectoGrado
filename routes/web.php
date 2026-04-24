@@ -38,6 +38,10 @@ Route::get('/cuenta', function () {
     return view('cuenta');
 })->name('cuenta')->middleware('auth');
 
+Route::get('/work', function (){
+    return view('trabajador');
+})->name('trabajador');
+
 /* -- RUTAS DE CONTROLADORES --*/
 Route::post('/registro', [RegisterController::class, 'store'])->name('register.store');
 
