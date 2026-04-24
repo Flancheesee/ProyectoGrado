@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MudanzaController;
 
 /* -- RUTAS DE BLADE --*/
 
@@ -12,10 +13,6 @@ Route::redirect('/', '/home');
 Route::get('/home', function () {
     return view('index');
 })-> name('home');
-
-Route::get('/about_us', function () {
-    return view('about_us');
-})-> name('about_us');
 
 Route::get('envios', function (){
     return view('envios');
@@ -38,7 +35,7 @@ Route::get('/registro', function(){
 })-> name('registro');
 
 Route::get('/cuenta', function () {
-    return view('cuenta'); // Asegúrate de tener el archivo resources/views/cuenta.blade.php
+    return view('cuenta');
 })->name('cuenta')->middleware('auth');
 
 /* -- RUTAS DE CONTROLADORES --*/
@@ -52,5 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/mudanzas/store', [MudanzaController::class, 'store'])->name('mudanzas.store')->middleware('auth');
 
 //require __DIR__.'/auth.php';

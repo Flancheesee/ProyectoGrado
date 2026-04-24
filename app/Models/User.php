@@ -36,4 +36,9 @@ class User extends Authenticatable{
         'email_verified_at' => 'datetime',
         'password' => 'hashed', // Esto encripta automáticamente al guardar
     ];
+
+    public function mudanzas()
+    {
+        return $this->hasMany(Mudanza::class, 'mote_usuario', 'user_id');
+    }
 }

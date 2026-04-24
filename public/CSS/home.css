@@ -1,0 +1,127 @@
+@import url("index.css");
+
+/*-- MENU --*/
+
+#menu_vertical:hover + #infoPrincipal {
+    margin-left: 300px; 
+}
+
+/* --- Contenedor Principal --- */
+#infoPrincipal {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- Títulos y Bienvenida --- */
+#tituloHome {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#tituloHome h1 {
+    font-size: 2.8rem;
+    color: #2c3e50;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.texto-bienvenida {
+    text-align: center;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    color: #666;
+}
+
+/* --- Secciones Flex (Inicios y Nosotros) --- */
+.seccion-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+/* El truco del zig-zag: invierte el orden en la segunda sección automáticamente */
+#nosotros.seccion-flex {
+    flex-direction: row-reverse;
+}
+
+.seccion-flex .texto {
+    flex: 1;
+}
+
+.seccion-flex h2, .seccion-flex h3 {
+    font-size: 2rem;
+    color: #e67e22; /* Un naranja profesional para mudanzas */
+    margin-bottom: 15px;
+}
+
+/* Estilo de las imágenes */
+.presentacion {
+    flex: 1;
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.presentacion:hover {
+    transform: scale(1.02);
+}
+
+/* --- Sección Final (CTA) --- */
+#enlace_mudanza {
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 50px 20px;
+    border-radius: 20px;
+    border: 2px dashed #bdc3c7;
+    margin-top: 40px;
+}
+
+#enlace_mudanza h3 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.btn-directo {
+    display: inline-block;
+    background-color: #2c3e50;
+    color: white !important;
+    text-decoration: none;
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-directo:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* --- Adaptación para Móviles --- */
+@media (max-width: 768px) {
+    .seccion-flex, #nosotros.seccion-flex {
+        flex-direction: column; /* Apila imagen y texto en móviles */
+        text-align: center;
+    }
+
+    #tituloHome h1 {
+        font-size: 2rem;
+    }
+
+    .presentacion {
+        max-width: 100%;
+    }
+}

@@ -19,13 +19,13 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate(); // Seguridad: regenera la sesión
 
-            return redirect()->intended('/'); // Redirige a donde iba o al home
+            return redirect()->intended(url()->previous()); 
         }
 
         // 3. Si falla, volver atrás con error
         return back()->withErrors([
             'email' => 'Las credenciales no coinciden con nuestros registros.',
-        ])->onlyInput('email');
+        ], 'login')->onlyInput('email');
     }
 
     public function logout(Request $request)
@@ -33,6 +33,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect()->intended(url()->previous());
     }
 }
