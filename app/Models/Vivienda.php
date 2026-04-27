@@ -23,6 +23,6 @@ class Vivienda extends Model
     public function mudanzas()
     {
         // Una vivienda puede estar en muchas mudanzas
-        return $this->hasMany(Mudanza::class, 'Vivienda_origen', 'ID_VIVIENDA');
+        return $this->hasMany(Mudanza::class, 'vivienda_origen_id', 'ID_VIVIENDA');
     }
 }

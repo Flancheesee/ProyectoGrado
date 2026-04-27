@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ asset('CSS/home.css') }}">
     </head>
 
+
     <body>
         <header id="menu" class="menu"> 
             <div id="logo">
@@ -154,5 +155,6 @@
                 alert("{{ session('success') }}");
             </script>
         @endif
+
     </body>
 </html>
