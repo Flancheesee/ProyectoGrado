@@ -131,7 +131,7 @@
         <footer>
             <h1>FOOTER</h1>
         </footer>
-        <script src="{{ asset('js/index.js') }}"></script>
+        <script src="{{ asset('JS/index.js') }}"></script>
 
         <!-- Filtro de errores login -->
 

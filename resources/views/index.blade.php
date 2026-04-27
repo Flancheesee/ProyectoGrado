@@ -139,7 +139,7 @@
         <footer>
             <h1>FOOTER</h1>
         </footer>
-        <script src="{{ asset('js/index.js') }}"></script>
+        <script src="{{ asset('JS/index.js') }}"></script>
         @if($errors->any())
         <script>
             // Si hay algún error en el formulario (login o registro), salta esta alerta
