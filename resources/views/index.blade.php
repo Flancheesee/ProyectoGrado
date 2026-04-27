@@ -12,7 +12,7 @@
     <body>
         <header id="menu" class="menu"> 
             <div id="logo">
-                <img src="{{ asset('img/place_logo.png') }}" alt="logo">
+                <img src="{{ asset('IMG/place_logo.png') }}" alt="logo">
             </div>
 
             <div id="infoYredes">

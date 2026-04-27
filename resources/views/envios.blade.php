@@ -80,7 +80,7 @@
         <section>
             <article id="menu_vertical">
 
-                <img id="icono_flecha" src="{{ asset('img/menu_arrow.png') }}" alt="Abrir menú">
+                <img id="icono_flecha" src="{{ asset('IMG/menu_arrow.png') }}" alt="Abrir menú">
                 <div id="contenedor_botones">
                     <a href="{{ route('home') }}">
                     <button id="home">🏡 Home</button>
