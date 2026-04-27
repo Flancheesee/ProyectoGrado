@@ -23,15 +23,15 @@
 
                 <div id="redes">
                     <p id="facebook">
-                        <a href="https://facebook.com" target="_blank" rel="noopener"><img src="{{ asset('img/facebook_logo.png') }}"></a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener"><img src="{{ asset('IMG/facebook_logo.png') }}"></a>
                         <span>move_it</span>
                     </p>
                     <p id="instagram">
-                        <a href="https://instagram.com" target="_blank" rel="noopener"><img src="{{ asset('img/instagram_logo.png') }}"></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener"><img src="{{ asset('IMG/instagram_logo.png') }}"></a>
                         <span>@moveit_España</span>
                     </p>
                     <p id="twitter">
-                        <a href="https://x.com" target="_blank" rel="noopener"><img src="{{ asset('img/twitter_logo.png') }}"></a>
+                        <a href="https://x.com" target="_blank" rel="noopener"><img src="{{ asset('IMG/twitter_logo.png') }}"></a>
                         <span>@moveit_España</span>
                     </p>
                 </div>
