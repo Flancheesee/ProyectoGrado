@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Mudanza;
+use App\Models\Mudanza; 
 use App\Models\Trabajador;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
