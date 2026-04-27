@@ -11,7 +11,7 @@
     <body>
         <header id="menu" class="menu"> 
             <div id="logo">
-                <img src="{{ asset('img/place_logo.png') }}" alt="logo">
+                <img src="{{ asset('IMG/place_logo.png') }}" alt="logo">
             </div>
 
             <div id="infoYredes">
@@ -46,7 +46,7 @@
                     @if(Auth::user()->foto_perfil)
                         <img src="{{ asset('storage/' . Auth::user()->foto_perfil) }}" alt="Perfil" class="user-avatar">
                     @else
-                        <img src="{{ asset('img/default_user.png') }}" alt="Por defecto" class="user-avatar">
+                        <img src="{{ asset('IMG/default_user.png') }}" alt="Por defecto" class="user-avatar">
                     @endif
                     
                     <p id="nickname">{{ Auth::user()->mote }}</p>
@@ -58,7 +58,7 @@
                 </div>
             @else
                 <div id="usuario" onclick="toggleLogin()">
-                    <img src="{{ asset('img/default_user.png') }}" alt="Invitado" class="user-avatar">
+                    <img src="{{ asset('IMG/default_user.png') }}" alt="Invitado" class="user-avatar">
                     <p id="nickname">Inicia sesión</p>
                 </div>
             @endauth

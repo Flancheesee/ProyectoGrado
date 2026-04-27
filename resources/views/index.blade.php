@@ -24,15 +24,15 @@
 
                 <div id="redes">
                     <p id="facebook">
-                        <a href="https://facebook.com" target="_blank" rel="noopener"><img src="{{ asset('img/facebook_logo.png') }}"></a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener"><img src="{{ asset('IMG/facebook_logo.png') }}"></a>
                         <span>move_it</span>
                     </p>
                     <p id="instagram">
-                        <a href="https://instagram.com" target="_blank" rel="noopener"><img src="{{ asset('img/instagram_logo.png') }}"></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener"><img src="{{ asset('IMG/instagram_logo.png') }}"></a>
                         <span>@moveit_España</span>
                     </p>
                     <p id="twitter">
-                        <a href="https://x.com" target="_blank" rel="noopener"><img src="{{ asset('img/twitter_logo.png') }}"></a>
+                        <a href="https://x.com" target="_blank" rel="noopener"><img src="{{ asset('IMG/twitter_logo.png') }}"></a>
                         <span>@moveit_España</span>
                     </p>
                 </div>
@@ -47,7 +47,7 @@
                     @if(Auth::user()->foto_perfil)
                         <img src="{{ asset('storage/' . Auth::user()->foto_perfil) }}" alt="Perfil" class="user-avatar">
                     @else
-                        <img src="{{ asset('img/default_user.png') }}" alt="Por defecto" class="user-avatar">
+                        <img src="{{ asset('IMG/default_user.png') }}" alt="Por defecto" class="user-avatar">
                     @endif
                     
                     <p id="nickname">{{ Auth::user()->mote }}</p>
@@ -59,7 +59,7 @@
                 </div>
             @else
                 <div id="usuario" onclick="toggleLogin()">
-                    <img src="{{ asset('img/default_user.png') }}" alt="Invitado" class="user-avatar">
+                    <img src="{{ asset('IMG/default_user.png') }}" alt="Invitado" class="user-avatar">
                     <p id="nickname">Inicia sesión</p>
                 </div>
             @endauth
@@ -81,7 +81,7 @@
         <section>
             <article id="menu_vertical">
 
-                <img id="icono_flecha" src="{{ asset('img/menu_arrow.png') }}" alt="Abrir menú">
+                <img id="icono_flecha" src="{{ asset('IMG/menu_arrow.png') }}" alt="Abrir menú">
                 <div id="contenedor_botones">
                     <a href="{{ route('home') }}">
                     <button id="home">🏡 Home</button>
@@ -117,11 +117,11 @@
                             <h2>INICIOS</h2>
                             <p><b>MOVE IT</b> fue fundada en 2026 por Francisco Martin Jeronimo. La idea detras de esta aplicación surgio tras ver como ninguna empresa de mudanzas tenia buena reputación. Si nos eliges a nosotros nos encargaremos de que tu servicio sea el <b>mejor</b> posible.</p>
                         </div>
-                        <img class="presentacion" src="{{ asset('img/inicio_empresa.jpg') }}" alt="Inicios">
+                        <img class="presentacion" src="{{ asset('IMG/inicio_empresa.jpg') }}" alt="Inicios">
                     </div>
 
                     <div id="nosotros" class="seccion-flex">
-                        <img class="presentacion" src="{{ asset('img/home_trabajo.jpg') }}" alt="Nosotros">
+                        <img class="presentacion" src="{{ asset('IMG/home_trabajo.jpg') }}" alt="Nosotros">
                         <div class="texto">
                             <h3>¿Porque elegirnos a nosotros?</h3>
                             <p>Si no nos conoces, seguramente no seamos tu unica opción, pero nuestros clientes siempre nos recomiendan a sus conocidos. Ofrecemos un servicio de seguridad el cual garantiza que el 100% de tus articulos llegara en el mismo estado en el que se embalaron.</p>
