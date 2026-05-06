@@ -1,0 +1,205 @@
+:root {
+    --azul-oscuro: #1e3a8a; /* Azul profesional */
+    --azul-claro: #3b82f6;
+    --blanco: #ffffff;
+    --gris-fondo: #f8fafc;
+    --texto: #334155;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--gris-fondo);
+    color: var(--texto);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* HEADER */
+.main-header {
+    background-color: var(--azul-oscuro);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo { font-size: 1.5rem; letter-spacing: 1px; }
+.logo span { color: var(--azul-claro); font-weight: bold; }
+
+/* CARD DE LOGIN */
+.content-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-card h2 { color: var(--azul-oscuro); margin-bottom: 10px; }
+.login-card p { font-size: 0.9rem; color: #64748b; margin-bottom: 30px; }
+
+/* FORMULARIO */
+.work-form { text-align: left; }
+
+.form-group { margin-bottom: 20px; }
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--azul-claro);
+}
+
+/* BOTÓN */
+.btn-enviar {
+    width: 100%;
+    background-color: var(--azul-oscuro);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+}
+
+.btn-enviar:hover { background-color: #111827; }
+
+/* ERROR */
+.error-msg {
+    background: #fef2f2;
+    color: #b91c1c;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    border: 1px solid #fecaca;
+}
+
+/* FOOTER */
+.main-footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+/* HEADER INTERNO DEL DASHBOARD */
+.worker-header {
+    max-width: 900px;
+    margin: 30px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--azul-oscuro);
+    text-align: center;
+}
+
+/* TÍTULO */
+.worker-header h1 {
+    margin-bottom: 10px;
+    color: var(--azul-oscuro);
+    font-size: 1.8rem;
+}
+
+/* INFO (DNI + ROL) */
+.worker-header .worker-info {
+    margin: 20px 0;
+    text-align: left;
+}
+
+.worker-header .worker-info p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+/* BADGE ROL */
+.worker-header .badge {
+    background: var(--azul-claro);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* SEPARADOR */
+.worker-header hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* BOTÓN */
+.worker-header .btn-logout {
+    background-color: var(--azul-oscuro);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.worker-header .btn-logout:hover {
+    background-color: #111827;
+}
+
+/* LINK LOGIN */
+.worker-header a {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+.worker-header a button {
+    background-color: var(--azul-claro);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.worker-header a button:hover {
+    background-color: var(--azul-oscuro);
+}

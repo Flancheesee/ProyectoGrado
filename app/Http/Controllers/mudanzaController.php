@@ -43,6 +43,7 @@ class MudanzaController extends Controller
             }
 
             // 3. Crear Vivienda Origen
+
             $viviendaOrigen = Vivienda::create([
                 'user_id'   => Auth::id(),
                 'nombre'    => 'Origen: ' . Auth::user()->mote,
@@ -50,9 +51,8 @@ class MudanzaController extends Controller
                 'direccion' => $data['direccion_origen'],
             ]);
 
-            // 4. Crear Vivienda Destino (Opcional, según tu lógica de DB)
 
-            // 5. Crear la Mudanza
+            // 4. Crear la Mudanza
             Mudanza::create([
                 'user_id'                => Auth::id(),
                 'vivienda_origen_id'     => $viviendaOrigen->vivienda_id,
@@ -67,7 +67,6 @@ class MudanzaController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            // Log::error($e->getMessage()); // Útil para depurar
             return redirect()->back()->with('error', 'Error al procesar la mudanza: ' . $e->getMessage());
         }
     }
