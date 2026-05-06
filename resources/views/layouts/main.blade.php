@@ -40,7 +40,7 @@
                         
             <p id="nickname">{{ Auth::user()->mote }}</p>
                         
-            <form action="{{ route('logout') }}" method="POST" class="logout-form" onclick="event.stopPropagation()">
+            <form action="{{ route('logoutCliente') }}" method="POST" class="logout-form" onclick="event.stopPropagation()">
                 @csrf
                 <button type="submit" class="btn-logout">Salir</button>
             </form>
