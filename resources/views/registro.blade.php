@@ -33,7 +33,7 @@
             <label for="foto_perfil" style="margin-bottom: 5px; font-weight: bold;">Foto de perfil:</label>
             <input id="foto_perfil" name="imagen" type="file" accept="image/*" onchange="previewImage(event)">
             
-            <button type="submit" class="btn-enviar">Entrar</button>
+            <button type="submit" class="btn-enviar">Registrarse</button>
         </form>
     </body>
 </html>

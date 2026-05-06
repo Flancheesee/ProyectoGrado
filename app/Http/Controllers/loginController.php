@@ -41,7 +41,7 @@ class LoginController extends Controller
             // Regenerar sesión por seguridad
             $request->session()->regenerate();
             
-            return redirect()->intended('/worker/dashboard');
+            return redirect()->intended('/work/dashboard');
         }
 
         // Si falla, volvemos atrás con error
@@ -50,11 +50,25 @@ class LoginController extends Controller
         ])->onlyInput('dni');
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request, $guard = 'web')
     {
-        Auth::logout();
+        Auth::guard($guard)->logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+    }
+
+    public function logoutCliente(Request $request)
+    {
+        $this->logout($request, 'web');
+        
         return redirect()->intended(url()->previous());
+    }
+
+    public function logoutTrabajador(Request $request)
+    {
+        $this->logout($request, 'worker');
+        
+        return redirect('/work');
     }
 }

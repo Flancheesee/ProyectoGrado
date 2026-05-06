@@ -12,15 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('mudanzas', function (Blueprint $table) {
-            // La columna para el ID del trabajador (que sea nullable porque al principio no tiene nadie)
-            $table->unsignedBigInteger('trabajador_id')->nullable()->after('user_id');
-            $table->foreign('trabajador_id')->references('trabajador_id')->on('trabajadores');
+            $table->string('trabajador_id')->nullable()->after('user_id');
+            
+            $table->foreign('trabajador_id')->references('dni')->on('trabajadores')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('mudanzas', function (Blueprint $table) {
