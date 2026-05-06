@@ -1,11 +1,11 @@
 <h1 align="center">PROYECTO FIN DE GRADO</h1>
 
-<h2> - ¿Que es?</h2>
+<h2> - ¿Qué es?</h2>
 
 <p>Este proyecto es una pagina web hecha con Laravel junto a multiples herramientas como <b>"Spatie"</b> y <b>"Stripe"</b> para la parte servidor y otras como <b>"Vite"</b> y <b>"React"</b> para la parte cliente.</p>
 <p>El objetivo es plasmar en una web sobre una empresa ficticia de mudanzas junto a todos sus servicios (luego seguire explicando sus funciones).</p>
 
-<h2> - ¿Como se despliega en local?</h2>
+<h2> - ¿Cómo se despliega en local?</h2>
 
 <p>Para desplegar este proyecto en local es necesario disponer de un programa como <b>"XAMPP"</b> en el cual puedas lanzar tanto <b>"Apache"</b> como <b>"MySQL"</b>. Este tutorial es para Windows; para usuarios de Linux y Mac puede cambiar.</p>
 <p>Una vez tengas todo listo, sigue los siguientes pasos:</p>
