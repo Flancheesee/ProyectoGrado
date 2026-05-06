@@ -12,7 +12,3 @@ class userController extends Controller
         $usuarios = DB::table('users')->get();
     }
 }
-/*
-Modifico esto para commit
-
-*/
