@@ -203,3 +203,57 @@ body {
 .worker-header a button:hover {
     background-color: var(--azul-oscuro);
 }
+
+/* Contenedores del Dashboard */
+.dashboard-card {
+    background: white;
+    margin-top: 20px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.dashboard-card h2 {
+    color: var(--azul-oscuro);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Tabla de Trabajo */
+.work-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.work-table thead tr {
+    background-color: var(--azul-oscuro);
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+
+.work-table th, .work-table td {
+    padding: 12px 15px;
+}
+
+.work-table tbody tr {
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s;
+}
+
+.work-table tbody tr:nth-of-type(even) {
+    background-color: #f8fafc;
+}
+
+.work-table tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+.text-center {
+    text-align: center;
+}

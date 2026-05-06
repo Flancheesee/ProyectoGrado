@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Mudanza;
 
 class LoginController extends Controller
 {
@@ -70,5 +71,29 @@ class LoginController extends Controller
         $this->logout($request, 'worker');
         
         return redirect('/work');
+    }
+
+    public function showDashboard()
+    {
+        // 1. Obtenemos al trabajador autenticado
+        $trabajador = Auth::guard('worker')->user();
+
+        // 2. Cargamos las mudanzas
+        $mudanzas = collect(); // Colección vacía por defecto para evitar errores en la vista
+        
+        dd(Mudanza::whereNull('trabajador_id')->get());
+
+        if ($trabajador->rol === 'conductor'){
+            $mudanzas = Mudanza::where('trabajador_id', $trabajador->dni)->get();
+        }
+        elseif($trabajador->rol === 'admin'){
+            $mudanzas = Mudanza::whereNull('trabajador_id')->get();
+        }
+        elseif($trabajador->rol === 'peon'){
+            $mudanzas = Mudanza::get();
+        }
+
+        // 3. Enviamos todo a la vista
+        return view('dashboard', compact('trabajador', 'mudanzas'));
     }
 }

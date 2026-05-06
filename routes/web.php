@@ -42,10 +42,6 @@ Route::get('/work', function (){
     return view('trabajador');
 })->name('trabajador');
 
-Route::get('/work/dashboard', function (){
-    return view('dashboard');
-})->name('dashboard');
-
 /* -- RUTAS DE CONTROLADORES --*/
 Route::post('/registro', [RegisterController::class, 'store'])->name('register.store');
 
@@ -53,6 +49,10 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout/cliente', [LoginController::class, 'logoutCliente'])->name('logout.cliente');
 Route::post('/logout/trabajador', [LoginController::class, 'logoutTrabajador'])->name('logout.trabajador');
 Route::post('/work/login', [LoginController::class, 'loginTrabajador'])->name('worklogin.post');
+
+Route::get('/work/dashboard', [LoginController::class, 'showDashboard'])
+    ->name('dashboard')
+    ->middleware('auth:worker');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
