@@ -70,4 +70,19 @@ class MudanzaController extends Controller
             return redirect()->back()->with('error', 'Error al procesar la mudanza: ' . $e->getMessage());
         }
     }
+
+    public function asignarTrabajador(Request $request)
+    {
+        $request->validate([
+            'mudanza_id' => 'required|exists:mudanzas,mudanza_id',
+            'trabajador_id' => 'required|exists:trabajadores,dni',
+        ]);
+
+        $mudanza = Mudanza::find($request->mudanza_id);
+        $mudanza->trabajador_id = $request->trabajador_id;
+        $mudanza->estado = 'en_curso'; // Opcional: cambiar estado al asignar
+        $mudanza->save();
+
+        return redirect()->back()->with('success', 'Conductor asignado correctamente a la mudanza #' . $request->mudanza_id);
+    }
 }

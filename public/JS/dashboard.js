@@ -33,3 +33,14 @@ window.addEventListener('click', function(event) {
         document.body.style.overflow = 'auto';
     }
 });
+
+function prepararAsignacion(mudanzaId) {
+    // 1. Ponemos el ID de la mudanza en el input oculto
+    document.getElementById('input_mudanza_id').value = mudanzaId;
+    
+    // 2. Cerramos el modal de gestión
+    closeModal('modalGestion');
+    
+    // 3. Abrimos el modal de asignación
+    openModal('modalAsignarConductor');
+}

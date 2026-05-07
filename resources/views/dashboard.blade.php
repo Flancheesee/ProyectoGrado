@@ -94,54 +94,106 @@
                         </div>
 
                         <div id="modalGestion" class="modal-overlay">
-                            <div class="modal-content">
+                            <div class="modal-content" style="max-width: 800px;">
                                 <div class="modal-header">
-                                    <h3>Gestionar Mudanzas</h3>
+                                    <h3>🚚 Mudanzas Pendientes de Asignar</h3>
                                     <button class="close-modal" onclick="closeModal('modalGestion')">&times;</button>
                                 </div>
+
                                 <div class="modal-body">
-                                    <div id="modalGestion" class="modal-overlay">
-                                        <div class="modal-content" style="max-width: 800px;">
-                                            <div class="modal-header">
-                                                <h3>🚚 Mudanzas Pendientes de Asignar</h3>
-                                                <button class="close-modal" onclick="closeModal('modalGestion')">&times;</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                @if($mudanzas->isEmpty())
-                                                    <div style="text-align: center; padding: 20px;">
-                                                        <p>No hay mudanzas sin asignar. ¡Todo está al día! ✨</p>
-                                                    </div>
-                                                @else
-                                                    <table class="work-table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="text-center">ID</th>
-                                                                <th>Origen</th>
-                                                                <th>Destino</th>
-                                                                <th>Fecha</th>
-                                                                <th class="text-center">Acción</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @foreach($mudanzas as $mudanza)
-                                                                <tr>
-                                                                    <td class="text-center">#{{ $mudanza->id }}</td>
-                                                                    <td>{{ $mudanza->origen }}</td>
-                                                                    <td>{{ $mudanza->destino }}</td>
-                                                                    <td>{{ $mudanza->fecha ? (\Carbon\Carbon::parse($mudanza->fecha)->format('d/m/Y')) : 'Sin fecha' }}</td>
-                                                                    <td class="text-center">
-                                                                        <button class="btn-admin" style="padding: 5px 12px; font-size: 0.8rem; margin: 0;">
-                                                                            Asignar
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                @endif
-                                            </div>
+                                    @if($mudanzas->isEmpty())
+                                        <div style="text-align: center; padding: 20px;">
+                                            <p>No hay mudanzas sin asignar. ¡Todo está al día! ✨</p>
                                         </div>
-                                    </div>
+                                    @else
+                                        <table class="work-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">ID</th>
+                                                    <th>Origen</th>
+                                                    <th>Destino</th>
+                                                    <th>Fecha</th>
+                                                    <th class="text-center">Acción</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                @foreach($mudanzas as $mudanza)
+                                                    <tr>
+                                                        <td class="text-center">#{{ $mudanza->mudanza_id }}</td>
+                                                        <td>{{ $mudanza->vivienda_origen_id }}</td>
+                                                        <td>{{ $mudanza->direccion_destinatario }}</td>
+
+                                                        <td>
+                                                            {{ $mudanza->fecha_mudanza 
+                                                                ? \Carbon\Carbon::parse($mudanza->fecha_mudanza)->format('d/m/Y') 
+                                                                : 'Sin fecha' }}
+                                                        </td>
+
+                                                        <td class="text-center">
+                                                            <button class="btn-admin"
+                                                                onclick="prepararAsignacion('{{ $mudanza->mudanza_id }}')"
+                                                                style="padding: 5px 12px; font-size: 0.8rem; margin: 0;">
+                                                                Asignar
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="modalAsignarConductor" class="modal-overlay">
+                            <div class="modal-content" style="max-width: 500px;">
+                                <div class="modal-header">
+                                    <h3>Asignar Conductor</h3>
+
+                                    <button class="close-modal"
+                                        onclick="closeModal('modalAsignarConductor')">
+                                        &times;
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <form action="{{ route('mudanzas.asignar') }}" method="POST">
+                                        @csrf
+
+                                        <input type="hidden"
+                                            name="mudanza_id"
+                                            id="input_mudanza_id">
+
+                                        <div class="form-group">
+                                            <label for="trabajador_id">
+                                                Seleccionar Conductor
+                                            </label>
+
+                                            <select name="trabajador_id"
+                                                id="trabajador_id"
+                                                required
+                                                class="form-control">
+
+                                                <option value="" disabled selected>
+                                                    Elige un empleado...
+                                                </option>
+
+                                                @foreach($conductores as $t)
+                                                    <option value="{{ $t->dni }}">
+                                                        {{ $t->nombre }} {{ $t->apellidos }}
+                                                        ({{ $t->rol }})
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-footer" style="margin-top: 20px;">
+                                            <button type="submit" class="btn-admin">
+                                                Confirmar Asignación
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

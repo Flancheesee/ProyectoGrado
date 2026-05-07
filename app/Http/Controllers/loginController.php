@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Mudanza;
+use App\Models\Trabajador;
 
 class LoginController extends Controller
 {
@@ -80,18 +81,20 @@ class LoginController extends Controller
 
         // 2. Cargamos las mudanzas
         $mudanzas = collect(); // Colección vacía por defecto para evitar errores en la vista
+        $conductores = collect();
 
         if ($trabajador->rol === 'conductor'){
             $mudanzas = Mudanza::where('trabajador_id', $trabajador->dni)->get();
         }
         elseif($trabajador->rol === 'admin'){
-            $mudanzas = Mudanza::where('trabajador_id', null)->get();
+            $mudanzas = Mudanza::whereNull('trabajador_id')->get();
+            $conductores = Trabajador::where('rol', 'conductor')->get();
         }
         elseif($trabajador->rol === 'peon'){
             $mudanzas = Mudanza::get();
         }
 
         // 3. Enviamos todo a la vista
-        return view('dashboard', compact('trabajador', 'mudanzas'));
+        return view('dashboard', compact('trabajador', 'mudanzas', 'conductores'));
     }
 }

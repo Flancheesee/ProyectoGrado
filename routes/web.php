@@ -51,6 +51,8 @@ Route::post('/logout/cliente', [LoginController::class, 'logoutCliente'])->name(
 Route::post('/logout/trabajador', [LoginController::class, 'logoutTrabajador'])->name('logout.trabajador');
 Route::post('/work/login', [LoginController::class, 'loginTrabajador'])->name('worklogin.post');
 
+Route::post('/mudanzas/asignar', [MudanzaController::class, 'asignarTrabajador'])->name('mudanzas.asignar');
+
 Route::get('/work/dashboard', [LoginController::class, 'showDashboard'])
     ->name('dashboard')
     ->middleware('auth:worker');
