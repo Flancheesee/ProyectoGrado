@@ -70,11 +70,4 @@ class MudanzaController extends Controller
             return redirect()->back()->with('error', 'Error al procesar la mudanza: ' . $e->getMessage());
         }
     }
-
-    public function mostrarMudanzasConductor($id)
-    {
-        $mudanzas = Mudanza::where('trabajador_id', $id)->get();
-
-        return view('dashboard', compact('mudanzas'));
-    }
 }

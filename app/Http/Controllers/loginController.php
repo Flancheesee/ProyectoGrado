@@ -85,7 +85,7 @@ class LoginController extends Controller
             $mudanzas = Mudanza::where('trabajador_id', $trabajador->dni)->get();
         }
         elseif($trabajador->rol === 'admin'){
-            $mudanzas = Mudanza::whereNull('trabajador_id')->get();
+            $mudanzas = Mudanza::where('trabajador_id', null)->get();
         }
         elseif($trabajador->rol === 'peon'){
             $mudanzas = Mudanza::get();

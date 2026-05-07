@@ -44,6 +44,7 @@ Route::get('/work', function (){
 
 /* -- RUTAS DE CONTROLADORES --*/
 Route::post('/registro', [RegisterController::class, 'store'])->name('register.store');
+Route::post('/work/dashboard/register', [RegisterController::class, 'storeEmpleado'])->name('trabajador.store');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout/cliente', [LoginController::class, 'logoutCliente'])->name('logout.cliente');
