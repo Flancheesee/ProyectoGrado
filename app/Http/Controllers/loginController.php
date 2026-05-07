@@ -80,8 +80,6 @@ class LoginController extends Controller
 
         // 2. Cargamos las mudanzas
         $mudanzas = collect(); // Colección vacía por defecto para evitar errores en la vista
-        
-        dd(Mudanza::whereNull('trabajador_id')->get());
 
         if ($trabajador->rol === 'conductor'){
             $mudanzas = Mudanza::where('trabajador_id', $trabajador->dni)->get();

@@ -49,32 +49,37 @@
 
                     @elseif(Auth::guard('worker')->user()->rol === 'admin')
                         <div class="dashboard-card">
-                            <h2>🚚 Mudanzas sin asignar</h2>
-                            
-                            @if($mudanzas->isEmpty())
-                                <p>No hay mudanzas pendientes de asignar en este momento. ¡Buen trabajo!</p>
-                            @else
-                                <table class="work-table">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">ID</th>
-                                            <th>Origen</th>
-                                            <th>Destino</th>
-                                            <th>Fecha</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($mudanzas as $mudanza)
-                                            <tr>
-                                                <td class="text-center">{{ $mudanza->id }}</td>
-                                                <td>{{ $mudanza->origen }}</td>
-                                                <td>{{ $mudanza->destino }}</td>
-                                                <td>{{ $mudanza->fecha }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            @endif
+                            <h2>Panel de Administración</h2>
+                            <div class="admin-actions">
+                                <button class="btn-admin" onclick="openModal('modalGestion')">🚚 Gestionar Mudanzas</button>
+                                <button class="btn-admin" onclick="openModal('modalTrabajador')">👤 Crear Trabajador</button>
+                            </div>
+                        </div>
+
+                        <div id="modalGestion" class="modal-overlay">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3>Gestionar Mudanzas</h3>
+                                    <button class="close-modal" onclick="closeModal('modalGestion')">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Hola</p>
+                                    {{-- Aquí podrías meter la tabla de mudanzas que tenías antes --}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="modalTrabajador" class="modal-overlay">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3>Crear Nuevo Trabajador</h3>
+                                    <button class="close-modal" onclick="closeModal('modalTrabajador')">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Hola</p>
+                                    {{-- Aquí irá tu formulario de creación más adelante --}}
+                                </div>
+                            </div>
                         </div>
                     @endif
                 </div>

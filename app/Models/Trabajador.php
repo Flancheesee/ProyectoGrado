@@ -22,7 +22,7 @@ class Trabajador extends Authenticatable
     protected $keyType = 'string'; // Indica que el DNI es una cadena
 
     protected $fillable = [
-        'dni', // Al ser clave primaria manual, debe estar aquí
+        'dni',
         'nombre',
         'apellidos',
         'telefono',

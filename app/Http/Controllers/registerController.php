@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Trabajador;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -10,7 +11,7 @@ class RegisterController extends Controller
 {
     public function store(Request $request)
     {
-        // Validar (Seguridad: no dejamos pasar datos basura)
+        // Validar 
         $request->validate([
             'mote' => 'required|unique:users,mote',
             'nombre' => 'required|string',
@@ -37,5 +38,34 @@ class RegisterController extends Controller
         ]);
 
         return redirect()->route('home')->with('success', 'Usuario registrado con éxito.');
+    }
+
+    public function storeEmpleado(Request $request)
+    {
+        // 1. Validar
+        $validated = $request->validate([
+            'dni'       => 'required|string|unique:trabajadores,dni',
+            'nombre'    => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
+            'telefono'  => 'required|numeric',
+            'sueldo'    => 'required|numeric',
+            'rol'       => 'required|in:admin,conductor,peon',
+            'password'  => 'required|min:6|confirmed',
+        ]);
+
+        // 2. Crear el trabajador en la BD
+        Trabajador::create([
+            'dni'       => $validated['dni'],
+            'nombre'    => $validated['nombre'],
+            'apellidos' => $validated['apellidos'],
+            'telefono'  => $validated['telefono'],
+            'sueldo'    => $validated['sueldo'],
+            'rol'       => $validated['rol'],
+            // Encriptamos la contraseña antes de guardarla
+            'password'  => Hash::make($validated['password']),
+        ]);
+
+        // 3. Redirigir con mensaje de éxito
+        return redirect()->route('dashboard')->with('success', 'Trabajador registrado con éxito.');
     }
 }
