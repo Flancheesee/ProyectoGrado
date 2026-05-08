@@ -42,7 +42,10 @@ Route::get('/work', function (){
     return view('trabajador');
 })->name('trabajador');
 
-/* -- RUTAS DE CONTROLADORES --*/
+/* -- /////////////////////////
+    RUTAS DE CONTROLADORES
+//////////////////////////--*/
+
 Route::post('/registro', [RegisterController::class, 'store'])->name('register.store');
 Route::post('/work/dashboard/register', [RegisterController::class, 'storeEmpleado'])->name('trabajador.store');
 
@@ -50,6 +53,12 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout/cliente', [LoginController::class, 'logoutCliente'])->name('logout.cliente');
 Route::post('/logout/trabajador', [LoginController::class, 'logoutTrabajador'])->name('logout.trabajador');
 Route::post('/work/login', [LoginController::class, 'loginTrabajador'])->name('worklogin.post');
+
+// Ver el formulario de edición
+Route::get('/cuenta/editar', [LoginController::class, 'editProfile'])->name('cuenta.editar');
+
+// Procesar los datos (Usamos PUT porque es el estándar para actualizar)
+Route::put('/cuenta/editar', [LoginController::class, 'update'])->name('cuenta.update');
 
 Route::post('/mudanzas/asignar', [MudanzaController::class, 'asignarTrabajador'])->name('mudanzas.asignar');
 

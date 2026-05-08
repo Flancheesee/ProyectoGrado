@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Mudanza;
 use App\Models\Trabajador;
+use Illuminate\Support\Facades\Storage;
 
 class LoginController extends Controller
 {
@@ -97,5 +98,46 @@ class LoginController extends Controller
         // 3. Enviamos todo a la vista
         return view('dashboard', compact('trabajador', 'mudanzas', 'conductores'));
     }
+
+    public function editProfile()
+    {
+        return view('cliente.editar');
+    }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        // 1. Validamos los datos
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'telefono' => 'nullable|string|max:20',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg'
+        ]);
+
+        // 2. Actualizamos los datos básicos
+        $user->nombre = $request->nombre;
+        $user->apellidos = $request->apellidos;
+        $user->email = $request->email;
+        $user->telefono = $request->telefono;
+
+        // 3. Si sube una nueva foto, la guardamos y borramos la vieja
+        if ($request->hasFile('foto')) {
+            // Borrar la foto anterior si existe
+            if ($user->foto) {
+                Storage::disk('public')->delete($user->foto);
+            }
+            // Guardar la nueva
+            $ruta = $request->file('foto')->store('perfiles', 'public');
+            $user->foto = $ruta;
+        }
+
+        // 4. Guardamos en base de datos
+        $user->save();
+
+        // Redirigimos de vuelta al perfil con un mensaje de éxito
+        return redirect()->route('cuenta.perfil')->with('success', 'Perfil actualizado correctamente.');
+    }
 }
-/**/
