@@ -294,6 +294,6 @@
                 <a href="{{ route('trabajador') }}">Ir al Login</a>
             @endif
         </header>
-        <script src="{{ asset('js/dashboard.js') }}"></script>
+        <script src="{{ asset('JS/dashboard.js') }}"></script>
     </body>
 </html>
