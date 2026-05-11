@@ -6,16 +6,14 @@
     background-color: transparent;
 }
 
-
-/*Menu lateral*/
-
-#menu_vertical{
-    position: relative;
+#menu_principal{
+    height: 300px !important; /* El !important asegura que gane a la regla general */
+    min-height: 300px;
+    margin-top: 20px; /* Separación opcional del header */
+    border-bottom: 3px solid #7B5A37; /* Cerramos el borde por abajo para que no quede "infinito" */
+    border-radius: 0 0 15px 0;
 }
 
-#menu_vertical:hover {
-    width: 230px; 
-}
 
 /* Contenedor Principal (El Hero) */
 #infoPrincipal.hero-section {

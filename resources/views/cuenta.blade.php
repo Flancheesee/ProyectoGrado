@@ -17,16 +17,27 @@
                         <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->nombre) }}&background=D6B87A&color=fff" alt="Avatar">
                     @endif
                 </div>
-                <h1 class="username">{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</h1>
+                <h1 class="username">{{ Auth::user()->mote }}</h1>
             </div>
 
             <div class="profile-body">
                 <div class="info-grid">
+
+                    <div class="info-item">
+                        <span class="info-label">Nombre</span>
+                        <span class="info-value">{{ Auth::user()->name }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-label">Apellidos</span>
+                        <span class="info-value">{{ Auth::user()->apellidos }}</span>
+                    </div>
+
                     <div class="info-item">
                         <span class="info-label">Correo Electrónico</span>
                         <span class="info-value">{{ Auth::user()->email }}</span>
                     </div>
-                    
+
                     <div class="info-item">
                         <span class="info-label">Teléfono</span>
                         <span class="info-value">{{ Auth::user()->telefono ?? 'No especificado' }}</span>
@@ -38,7 +49,8 @@
                     </div>
                 </div>
 
-                <a href="#" class="btn-edit">Editar Perfil</a>
+                <a href="{{ route('cuenta.editar')}}" class="btn-edit">Editar Perfil</a>
+                <a href="{{ route('home')}}" class="btn-edit">Volver a casa</a>
             </div>
         </div>
     </body>

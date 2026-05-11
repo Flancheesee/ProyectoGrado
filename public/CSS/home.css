@@ -79,7 +79,7 @@
 /* --- Sección Final (CTA) --- */
 #enlace_mudanza {
     text-align: center;
-    background-color: #f8f9fa;
+    background-color:  #F9F0E7;
     padding: 50px 20px;
     border-radius: 20px;
     border: 2px dashed #bdc3c7;
@@ -89,6 +89,7 @@
 #enlace_mudanza h3 {
     font-size: 1.5rem;
     margin-bottom: 25px;
+    background-color: transparent;
 }
 
 .btn-directo {
@@ -113,7 +114,7 @@
 /* --- Adaptación para Móviles --- */
 @media (max-width: 768px) {
     .seccion-flex, #nosotros.seccion-flex {
-        flex-direction: column; /* Apila imagen y texto en móviles */
+        flex-direction: column; 
         text-align: center;
     }
 

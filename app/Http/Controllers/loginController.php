@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Mudanza;
 use App\Models\Trabajador;
 use Illuminate\Support\Facades\Storage;
@@ -101,43 +102,49 @@ class LoginController extends Controller
 
     public function editProfile()
     {
-        return view('cliente.editar');
+        return view('editar');
     }
 
     public function update(Request $request)
     {
+        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         // 1. Validamos los datos
         $request->validate([
-            'nombre' => 'required|string|max:255',
+            'mote'      => 'required|string|max:255',
+            'name'      => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'telefono' => 'nullable|string|max:20',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg'
+            'email'     => 'required|email|unique:users,email,' . $user->user_id . ',user_id',
+            'telefono'  => 'nullable|string|max:20',
+            'password'  => 'nullable|min:6|confirmed', // 'confirmed' requiere un input llamado password_confirmation
+            'foto'      => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-        // 2. Actualizamos los datos básicos
-        $user->nombre = $request->nombre;
+        // 2. Actualizamos los datos (según los nombres de tu tabla en la captura)
+        $user->mote = $request->mote;
+        $user->name = $request->name; 
         $user->apellidos = $request->apellidos;
         $user->email = $request->email;
         $user->telefono = $request->telefono;
 
-        // 3. Si sube una nueva foto, la guardamos y borramos la vieja
-        if ($request->hasFile('foto')) {
-            // Borrar la foto anterior si existe
-            if ($user->foto) {
-                Storage::disk('public')->delete($user->foto);
-            }
-            // Guardar la nueva
-            $ruta = $request->file('foto')->store('perfiles', 'public');
-            $user->foto = $ruta;
+        // Actualizar contraseña solo si el usuario escribió algo
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
         }
 
-        // 4. Guardamos en base de datos
+        // 3. Gestión de la foto (tu columna es foto_perfil)
+        if ($request->hasFile('foto')) {
+            if ($user->foto_perfil) {
+                Storage::disk('public')->delete($user->foto_perfil);
+            }
+            // Guardamos la nueva
+            $ruta = $request->file('foto')->store('perfiles', 'public');
+            $user->foto_perfil = $ruta;
+        }
+
         $user->save();
 
-        // Redirigimos de vuelta al perfil con un mensaje de éxito
-        return redirect()->route('cuenta.perfil')->with('success', 'Perfil actualizado correctamente.');
+        return redirect()->route('cuenta')->with('success', 'Perfil actualizado correctamente.');
     }
 }

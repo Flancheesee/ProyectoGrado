@@ -38,6 +38,10 @@ Route::get('/cuenta', function () {
     return view('cuenta');
 })->name('cuenta')->middleware('auth');
 
+Route::get('/cuenta/editar', function(){
+    return view('editar');
+})->name('cliente.editar');
+
 Route::get('/work', function (){
     return view('trabajador');
 })->name('trabajador');
@@ -55,10 +59,10 @@ Route::post('/logout/trabajador', [LoginController::class, 'logoutTrabajador'])-
 Route::post('/work/login', [LoginController::class, 'loginTrabajador'])->name('worklogin.post');
 
 // Ver el formulario de edición
-Route::get('/cuenta/editar', [LoginController::class, 'editProfile'])->name('cuenta.editar');
+Route::get('/cuenta/edit', [LoginController::class, 'editProfile'])->name('cuenta.editar');
 
 // Procesar los datos (Usamos PUT porque es el estándar para actualizar)
-Route::put('/cuenta/editar', [LoginController::class, 'update'])->name('cuenta.update');
+Route::put('/cuenta/edit', [LoginController::class, 'update'])->name('cuenta.update');
 
 Route::post('/mudanzas/asignar', [MudanzaController::class, 'asignarTrabajador'])->name('mudanzas.asignar');
 

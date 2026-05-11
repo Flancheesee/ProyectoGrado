@@ -277,80 +277,127 @@ section {
 /* --- EL CONTENEDOR DEL MENÚ --- */
 
 #menu_vertical {
-    position:fixed ;
-    padding: 15px;
-    border-right: 3px solid black;
-    width: 100px; 
-    transition: width 0.5s ease; 
-    overflow: hidden;
+    position: fixed; 
+    
+    top: 40px;
+    left: 0;
 
+    padding: 30px 15px;
+    background-color: transparent;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease; 
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: center;     
+    align-items: flex-start;
     
-
-    min-height: 500px;
+    /* Anchos */
+    width: 70px;
+    height: var(--menu-height, calc(100vh - 80px));
+    
+    z-index: 100;
 }
 
 #menu_vertical:hover {
-    width: 250px; 
+    width: 290px; 
+    border-right: 4px solid #7B5A37;
+    border-top: 4px solid #7B5A37;
+    border-bottom: 4px solid #7B5A37;
+    background-color: #F9F0E7;
 }
 
+/* --- ICONO FLECHA --- */
 #icono_flecha {
-    width: 30px; 
-    display: block;
+    width: 35px; 
+    min-width: 35px;
+    margin: auto 0; /* Centrado vertical en el menú cerrado */
     cursor: pointer;
-
-    margin: 0; 
+    transition: transform 0.4s ease, opacity 0.3s ease;
 }
 
 #menu_vertical:hover #icono_flecha {
-    display: none; 
+    transform: rotate(180deg);
+    opacity: 0;
+    pointer-events: none;
 }
 
-/* --- LOS BOTONES --- */
+/* --- CONTENEDOR DE BOTONES --- */
 #contenedor_botones {
-
-    display: none; 
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 250px; 
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition-delay: 0s;
+    background-color: transparent;
 }
 
-/* Al abrir el menú, mostramos el contenedor de botones */
 #menu_vertical:hover #contenedor_botones {
-    display: block;
-    animation: aparecerBotones 0.5s ease forwards;
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.15s; /* Espera a que el menú se abra para mostrar texto */
 }
 
-#menu_vertical a {
-    text-decoration: none; 
-}
-
+/* --- ESTILO DE LOS BOTONES (Combinando colores) --- */
 #menu_vertical button {
-    padding: 10px;
-    margin-top: 15px;
+    all: unset; /* Limpieza total */
     display: flex;
-    align-items: center; 
-    width: 190px; 
-    height: 40px;
-    white-space: nowrap; 
+    align-items: center;
+    width: 100%;
+    height: 50px; /* Más altos */
+    margin-bottom: 15px; /* Más espacio entre ellos */
+    padding: 0 20px;
+    
+    /* Fondo blanco para que los emojis resalten, con tu borde dorado */
+    background: white;
+    border: 1px solid #D6B87A; /* Tu color dorado */
+    border-radius: 10px; /* Más redondeados */
+    
+    /* Texto con tu color marrón */
+    color: #7B5A37;
+    font-weight: bold;
+    font-size: 1.05rem;
+    white-space: nowrap;
     cursor: pointer;
+    box-sizing: border-box;
+    
+    /* Sombra suave para dar relieve premium */
+    box-shadow: 0 2px 5px rgba(123, 90, 55, 0.1);
+    
+    transition: all 0.2s ease;
 }
 
-/* --- ANIMACIÓN SUAVE --- */
-@keyframes aparecerBotones {
-    0% { opacity: 0; }
-    50% { opacity: 0; } 
-    100% { opacity: 1; }
+#menu_vertical button:hover {
+    background: #D6B87A; 
+    color: white; /* Texto blanco para contraste */
+    border-color: #D6B87A;
+    box-shadow: 0 4px 10px rgba(123, 90, 55, 0.2);
 }
 
-#menu_vertical:hover + #infoPrincipal {
-    margin-left: 300px; 
+/* Asegurar que los emojis se alineen bien */
+#menu_vertical button span, 
+#menu_vertical button i {
+    margin-right: 15px;
+    font-size: 1.2rem;
 }
 
 /* --- CONTENIDO PRINCIPAL --- */
 
+section {
+    display: flex;
+    align-items: flex-start;
+    /* FIX: Permitimos que el contenido de dentro salga fuera de los bordes del section */
+    overflow: visible !important; 
+    /* Y aseguramos que la sección ocupe todo el ancho disponible */
+    width: 100%;
+    position: relative;
+}
+
 #infoPrincipal {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     gap: 30px;
     padding: 20px;

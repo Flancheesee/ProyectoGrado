@@ -21,7 +21,7 @@
                 </div>
 
                 <p class="texto-bienvenida">
-                    Bienvenido a <b>MOVE IT</b> la empresa numero 1 en mudanzas en toda la peninsula. Si tienes que mudarte y no sabes como ¡solo llamanos!
+                    Bienvenido a <b>MOVE IT</b> la empresa número 1 en mudanzas en toda la peninsula. Si tienes que mudarte y no sabes como ¡solo llamanos!
                 </p>
 
                 <div id="introduccion" class="home">
