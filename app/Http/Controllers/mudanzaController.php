@@ -59,6 +59,7 @@ class MudanzaController extends Controller
                 'direccion_destinatario' => $data['direccion_destino'], 
                 'cantidad_empleados'     => $data['cantidad_empleados'],
                 'matricula_vehiculo'     => $vehiculo->matricula,
+                'fecha_mudanza'          => $data['fecha_mudanza'],
                 'estado'                 => 'pendiente'
             ]);
 

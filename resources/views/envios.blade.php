@@ -23,9 +23,17 @@
 
                 <div class="hero-cta">
                     @auth
-                        <button class="btn-mudanza-principal" onclick="toggleMudanza()">
-                            📦 HACER UNA MUDANZA
-                        </button>
+                        @if(!Auth::user()->tieneMudanzaPendiente())
+                            {{-- Caso: Todo OK, puede pedir mudanza --}}
+                            <button class="btn-mudanza-principal" onclick="irAFormulario()">
+                                📦 HACER UNA MUDANZA
+                            </button>
+                        @else
+                            {{-- Caso: Ya tiene una pendiente, mostramos tu modal warning --}}
+                            <button class="btn-mudanza-principal" onclick="mudanzaInProgress()">
+                                📦 HACER UNA MUDANZA
+                            </button>
+                        @endif
                     @else
                         <button class="btn-mudanza-principal" onclick="notLogged()">
                             📦 HACER UNA MUDANZA
@@ -55,6 +63,20 @@
                 <div class="botones-warning">
                     <button class="btn-enviar-mudanza" onclick="irAlLogin()">Iniciar Sesión / Registrarse</button>
                     <button class="btn-cancelar" onclick="cerrarWarning()">Volver</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- WARNING PARA NO HACER 2 MUDANZAS -->
+
+        <div id="overlayWarningMudanza" class="modal-overlay-mudanza" onclick="cerrarWarningMudanza()">
+            <div class="modal-content-mudanza warning-box" onclick="event.stopPropagation()">
+                <span class="close-btn" onclick="cerrarWarningMudanza()">&times;</span>
+                <h3 style="color: #7B5A37;">¡Atención!</h3>
+                <p>Tienes una mudanza pendiente, no puedes hacer otra por el momento</p>
+                
+                <div class="botones-warning">
+                    <button class="btn-cancelar" onclick="cerrarWarningMudanza()">Volver</button>
                 </div>
             </div>
         </div>
@@ -158,6 +180,8 @@
                 </form>
             </div>
         </div>
+
+
 
         <!-- Filtro errores mudanza-->
          @if ($errors->hasBag('mudanza') && $errors->mudanza->any())

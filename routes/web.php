@@ -14,19 +14,15 @@ Route::get('/home', function () {
     return view('index');
 })-> name('home');
 
-Route::get('envios', function (){
+Route::get('/mudanza', function (){
     return view('envios');
 })-> name('envios');
 
-Route::get('faq', function(){
-    return view('faq');
-})-> name('faq');
+Route::get('/miMudanza', function(){
+    return view('miMudanza');
+})-> name('mi.mudanza');
 
-Route::get('review', function(){
-    return view('review');
-})-> name('review');
-
-Route::get('support', function(){
+Route::get('/support', function(){
     return view('support');
 })-> name('support');
 

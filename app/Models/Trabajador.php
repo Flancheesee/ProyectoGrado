@@ -39,4 +39,9 @@ class Trabajador extends Authenticatable
     protected $casts = [
         'password' => 'hashed', // Esto ayuda a que Laravel gestione el Hash
     ];
+
+    public function getNombreCompletoAttribute()
+    {
+        return "{$this->nombre} {$this->apellidos}";
+    }
 }

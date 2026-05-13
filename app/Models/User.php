@@ -39,6 +39,12 @@ class User extends Authenticatable{
 
     public function mudanzas()
     {
-        return $this->hasMany(Mudanza::class, 'mote_usuario', 'user_id');
+        return $this->hasMany(Mudanza::class, 'user_id', 'user_id');
+    }
+
+    public function tieneMudanzaPendiente(){
+        return $this->mudanzas->contains(function ($mudanza) {
+            return $mudanza->estado !== 'finalizada'; 
+        });
     }
 }

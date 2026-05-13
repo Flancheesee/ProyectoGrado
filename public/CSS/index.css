@@ -299,10 +299,6 @@ section {
 
 #menu_vertical:hover {
     width: 290px; 
-    border-right: 4px solid #7B5A37;
-    border-top: 4px solid #7B5A37;
-    border-bottom: 4px solid #7B5A37;
-    background-color: #F9F0E7;
 }
 
 /* --- ICONO FLECHA --- */
@@ -367,13 +363,14 @@ section {
     box-shadow: 0 2px 5px rgba(123, 90, 55, 0.1);
     
     transition: all 0.2s ease;
+    opacity: 60%;
 }
 
 #menu_vertical button:hover {
-    background: #D6B87A; 
-    color: white; /* Texto blanco para contraste */
+    color: black; /* Texto blanco para contraste */
     border-color: #D6B87A;
     box-shadow: 0 4px 10px rgba(123, 90, 55, 0.2);
+    opacity: 100%;
 }
 
 /* Asegurar que los emojis se alineen bien */
@@ -445,12 +442,84 @@ section {
     align-items: center;
 }
 
-footer{
+/*
+    FOOTER
+*/
+
+.footer-main {
+    /* Usamos el color Crema (#F9F0E7) pero con 80% de opacidad */
+    background: rgba(249, 240, 231, 0.8); 
+    
+    /* El truco mágico: desenfoca lo que hay DETRÁS del footer */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    padding: 30px 0 15px 0;
+    margin-top: 50px;
+    
+    /* Borde superior elegante en Dorado (#D6B87A) */
+    border-top: 3px solid #D6B87A;
+    color: #7B5A37; /* Texto en Marrón oscuro */
+    
+    position: relative;
     width: 100%;
-    height: 300px;
+}
+
+.footer-content {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-section{
+    background-color: transparent;
+}
+
+.footer-section h3 {
+    background-color: transparent;
+    color: #7B5A37; /* Marrón oscuro */
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-section p {
+    background-color: transparent;
+    font-size: 0.9rem;
+    margin: 5px 0;
+    max-width: 250px;
+}
+
+/* --- LÍNEA DE COPYRIGHT --- */
+.footer-bottom {
+    background-color: transparent;
     text-align: center;
-    justify-content: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    /* Línea sutil en Dorado (#D6B87A) con transparencia */
+    border-top: 1px solid rgba(214, 184, 122, 0.4);
+}
 
-    border-top: 3px solid black;
+.footer-bottom p {
+    background-color: transparent;
+    font-size: 0.85rem;
+    margin: 2px 0;
+}
 
+.footer-bottom strong {
+    background-color: transparent;
+    color: #7B5A37;
+    font-weight: 800;
+}
+
+.sub-text {
+    background-color: transparent;
+    color: #D6B87A; /* Dorado para el texto DAW Project */
+    font-size: 0.75rem;
+    font-weight: bold;
 }
