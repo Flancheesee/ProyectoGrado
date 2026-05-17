@@ -18,7 +18,8 @@ class Mudanza extends Model
         'direccion_destinatario',
         'cantidad_empleados',
         'matricula_vehiculo',
-        'estado'
+        'estado',
+        'fecha_mudanza'
     ];
 
     public function usuario() {
@@ -26,10 +27,18 @@ class Mudanza extends Model
     }
 
     public function origen() {
-        return $this->belongsTo(Vivienda::class, 'Vivienda_origen', 'ID_VIVIENDA');
+        return $this->belongsTo(Vivienda::class, 'vivienda_origen_id', 'vivienda_id');
     }
 
     public function destino() {
-        return $this->belongsTo(Vivienda::class, 'Vivienda_destino', 'ID_VIVIENDA');
+        return $this->belongsTo(Vivienda::class, 'Vivienda_destino', 'id_vivienda');
+    }
+
+    public function conductor(){
+        return $this->belongsTo(Trabajador::class, 'trabajador_id', 'dni');
+    }
+
+    public function estado(){
+        return $this->estado;
     }
 }

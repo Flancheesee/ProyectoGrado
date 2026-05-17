@@ -5,8 +5,7 @@
 
     <div id="infoYredes">
         <div id="informacion">
-            <p>👤 +11 111 111 111</p>
-            <p>✉ correo@empresa.com</p>
+            <p>👤 +34 678 367 187</p>
             <p>⏰ 9:00 - 21:00</p>
     </div>
 
@@ -76,15 +75,11 @@
                 <button id="home">🏡 Home</button>
             </a>
             <a href="{{ route('envios') }}">
-                <button id="envios">📦 Envios</button>
+                <button id="envios">📦 Mudanza</button>
             </a>
                     
-            <a href="{{ route('review')}}">
-                <button id="review">⭐ Reseñas</button>
-            </a>
-
-            <a href="{{ route('faq')}}">
-                <button id="faq">❓ Preguntas frecuentes</button>
+            <a href="{{ route('mi.mudanza')}}">
+                <button id="review">⭐ Mi mudanza</button>
             </a>
 
             <a href="{{ route('support')}}">
@@ -97,9 +92,27 @@
 
 </section>
 
-<footer>
-    <h1>FOOTER</h1>
+<footer class="footer-main">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Move It</h3>
+            <p>Llevando tu mudanza al siguiente nivel con estilo y eficiencia.</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <p>📍 Granada, España</p>
+            <p>📧 info@moveit.com</p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; {{ date('Y') }} <strong>Francisco Martín Jerónimo</strong>. Todos los derechos reservados.</p>
+        <p class="sub-text">DAW Project</p>
+    </div>
 </footer>
+
+
 <script src="{{ asset('JS/index.js') }}"></script>
     @if($errors->any())
 <script>

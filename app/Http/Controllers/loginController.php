@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Mudanza;
+use App\Models\Trabajador;
+use Illuminate\Support\Facades\Storage;
 
 class LoginController extends Controller
 {
@@ -80,18 +83,68 @@ class LoginController extends Controller
 
         // 2. Cargamos las mudanzas
         $mudanzas = collect(); // Colección vacía por defecto para evitar errores en la vista
+        $conductores = collect();
 
         if ($trabajador->rol === 'conductor'){
             $mudanzas = Mudanza::where('trabajador_id', $trabajador->dni)->get();
         }
         elseif($trabajador->rol === 'admin'){
             $mudanzas = Mudanza::whereNull('trabajador_id')->get();
+            $conductores = Trabajador::where('rol', 'conductor')->get();
         }
         elseif($trabajador->rol === 'peon'){
             $mudanzas = Mudanza::get();
         }
 
         // 3. Enviamos todo a la vista
-        return view('dashboard', compact('trabajador', 'mudanzas'));
+        return view('dashboard', compact('trabajador', 'mudanzas', 'conductores'));
+    }
+
+    public function editProfile()
+    {
+        return view('editar');
+    }
+
+    public function update(Request $request)
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        // 1. Validamos los datos
+        $request->validate([
+            'mote'      => 'required|string|max:255',
+            'name'      => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
+            'email'     => 'required|email|unique:users,email,' . $user->user_id . ',user_id',
+            'telefono'  => 'nullable|string|max:20',
+            'password'  => 'nullable|min:6|confirmed', // 'confirmed' requiere un input llamado password_confirmation
+            'foto'      => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        // 2. Actualizamos los datos (según los nombres de tu tabla en la captura)
+        $user->mote = $request->mote;
+        $user->name = $request->name; 
+        $user->apellidos = $request->apellidos;
+        $user->email = $request->email;
+        $user->telefono = $request->telefono;
+
+        // Actualizar contraseña solo si el usuario escribió algo
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        // 3. Gestión de la foto (tu columna es foto_perfil)
+        if ($request->hasFile('foto')) {
+            if ($user->foto_perfil) {
+                Storage::disk('public')->delete($user->foto_perfil);
+            }
+            // Guardamos la nueva
+            $ruta = $request->file('foto')->store('perfiles', 'public');
+            $user->foto_perfil = $ruta;
+        }
+
+        $user->save();
+
+        return redirect()->route('cuenta')->with('success', 'Perfil actualizado correctamente.');
     }
 }

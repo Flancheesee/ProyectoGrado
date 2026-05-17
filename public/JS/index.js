@@ -49,6 +49,35 @@ function irAlLogin() {
     toggleLogin(); 
 }
 
+/* Funciones si el usuario YA tiene una mudanza*/
+
+// Función para mostrar el modal (esta es la que llamarás desde el botón)
+function mudanzaInProgress() {
+    const modal = document.getElementById('overlayWarningMudanza');
+    if (modal) {
+        modal.classList.add('active'); // Usamos clases para animaciones suaves
+        modal.style.display = 'flex';
+    }
+}
+
+// Función para cerrar el modal
+function cerrarWarningMudanza() {
+    const modal = document.getElementById('overlayWarningMudanza');
+    if (modal) {
+        modal.classList.remove('active');
+        // Esperamos un poco si tienes animación de salida, si no, directo a none
+        modal.style.display = 'none';
+    }
+}
+
+// Opcional: Cerrar con la tecla Escape
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        cerrarWarningMudanza();
+    }
+});
+
+
 /* Funcion para abrir el formulario de mudanza*/
 
 function toggleMudanza() {
@@ -59,3 +88,4 @@ function toggleMudanza() {
         modal.style.display = 'flex';
     }
 }
+

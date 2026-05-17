@@ -1,0 +1,108 @@
+@import url("cuenta.css");
+
+/* Contenedor del formulario */
+#registro {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.title-form {
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #7B5A37; /* Tu color dark */
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #D6B87A; /* Tu color dorado */
+    padding-bottom: 10px;
+}
+
+/* Grupos de input */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #D6B87A;
+    text-transform: uppercase;
+}
+
+#registro input[type="text"],
+#registro input[type="email"],
+#registro input[type="password"] {
+    padding: 12px 15px;
+    border: 1px solid #F1D3A6;
+    border-radius: 8px;
+    background-color: #F9F0E7; /* Fondo beige claro */
+    color: #7B5A37;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+#registro input:focus {
+    outline: none;
+    border-color: #D6B87A;
+    box-shadow: 0 0 8px rgba(214, 184, 122, 0.2);
+    background-color: #fff;
+}
+
+/* Estilo para el input de archivo */
+.custom-file-upload {
+    position: relative;
+    border: 2px dashed #D6B87A;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#foto_perfil {
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Botones */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-enviar {
+    flex: 2;
+    background-color: #7B5A37;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-enviar:hover {
+    background-color: #D6B87A;
+}
+
+.btn-cancelar {
+    flex: 1;
+    background-color: #e74c3c;
+    color: white;
+    padding: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.btn-cancelar:hover {
+    opacity: 0.8;
+}

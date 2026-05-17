@@ -35,5 +35,15 @@
             
             <button type="submit" class="btn-enviar">Registrarse</button>
         </form>
+
+        @if ($errors->any())
+            <div class="alert alert-danger" style="color: red; background: #fee; padding: 10px; border-radius: 5px;">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </body>
 </html>

@@ -1,0 +1,462 @@
+@import url("index.css");
+
+/* =========================
+   CONTENEDOR MUDANZAS
+========================= */
+
+.contenedor-mudanzas{
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+
+    padding: 10px 5px;
+
+    background-color: transparent;
+}
+
+/* =========================
+   TITULO
+========================= */
+
+.titulo-seccion{
+
+    font-size: 2.6rem;
+
+    font-weight: 800;
+
+    color: #7B5A37;
+
+    background-color: transparent;
+
+    position: relative;
+
+    width: fit-content;
+
+    padding-bottom: 12px;
+}
+
+.titulo-seccion::after{
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 90px;
+    height: 5px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            to right,
+            #D6B87A,
+            #F1D3A6
+        );
+}
+
+/* =========================
+   GRID
+========================= */
+
+.grid-mudanzas{
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(340px, 1fr));
+
+    gap: 28px;
+
+    background-color: transparent;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card-mudanza{
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+
+    padding: 28px;
+
+    border-radius: 28px;
+
+    background:rgba(249,240,231,.75);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border:
+        1px solid rgba(123,90,55,.10);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.06);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+
+    overflow: hidden;
+}
+
+.card-mudanza:hover{
+
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 18px 35px rgba(123,90,55,.15);
+}
+
+/* =========================
+   HEADER CARD
+========================= */
+
+.card-header{
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-bottom: 15px;
+
+    border-bottom:
+        1px solid rgba(123,90,55,.12);
+
+    background-color: transparent;
+
+    color: #7B5A37;
+
+    font-weight: 700;
+
+    font-size: 1rem;
+}
+
+.card-header span{
+
+    background-color: transparent;
+}
+
+/* =========================
+   ESTADO
+========================= */
+
+.tag-estado{
+
+    padding: 8px 16px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #D6B87A,
+            #cfa45b
+        );
+
+    color: white;
+
+    font-size: .85rem;
+
+    font-weight: 700;
+
+    letter-spacing: .5px;
+
+    text-transform: uppercase;
+
+    box-shadow:
+        0 4px 10px rgba(214,184,122,.25);
+}
+
+/* =========================
+   TEXTO CARD
+========================= */
+
+.card-mudanza p{
+
+    margin: 0;
+
+    line-height: 1.8;
+
+    font-size: 1rem;
+
+    color: #4d3928;
+
+    background-color: transparent;
+}
+
+.card-mudanza strong{
+
+    color: #7B5A37;
+
+    background-color: transparent;
+}
+
+/* =========================
+   FECHA
+========================= */
+
+.fecha-mudanza{
+
+    margin-top: 5px;
+
+    padding-top: 16px;
+
+    border-top:
+        1px solid rgba(123,90,55,.10);
+
+    font-weight: 600;
+
+    color: #7B5A37;
+
+    background-color: transparent;
+}
+
+/* =========================
+   ESTADO VACIO
+========================= */
+
+.estado-vacio{
+
+    width: 100%;
+
+    min-height: 300px;
+
+    padding: 50px 30px;
+
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 25px;
+
+    text-align: center;
+
+    background:
+        rgba(249,240,231,.70);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border:
+        1px solid rgba(123,90,55,.10);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.06);
+}
+
+/* =========================
+   ICONO
+========================= */
+
+.icono-estado{
+
+    font-size: 5rem;
+
+    background-color: transparent;
+
+    filter:
+        drop-shadow(0 5px 10px rgba(0,0,0,.08));
+}
+
+/* =========================
+   TEXTO ESTADO
+========================= */
+
+.estado-vacio p{
+
+    max-width: 700px;
+
+    font-size: 1.1rem;
+
+    line-height: 1.9;
+
+    color: #5b4430;
+
+    background-color: transparent;
+}
+
+/* =========================
+   BOTON PREMIUM
+========================= */
+
+.btn-premium{
+
+    text-decoration: none;
+
+    padding: 16px 34px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7B5A37,
+            #5e4024
+        );
+
+    color: white;
+
+    font-weight: 700;
+
+    letter-spacing: .5px;
+
+    transition:
+        all .3s ease;
+
+    box-shadow:
+        0 8px 18px rgba(123,90,55,.20);
+}
+
+.btn-premium:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.02);
+
+    background:
+        linear-gradient(
+            135deg,
+            #D6B87A,
+            #c89e54
+        );
+
+    box-shadow:
+        0 16px 30px rgba(214,184,122,.30);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 900px){
+
+    .grid-mudanzas{
+
+        grid-template-columns: 1fr;
+    }
+
+    .titulo-seccion{
+
+        font-size: 2rem;
+    }
+
+    .card-mudanza{
+
+        padding: 22px;
+    }
+}
+
+@media(max-width: 600px){
+
+    .estado-vacio{
+
+        padding: 40px 20px;
+    }
+
+    .icono-estado{
+
+        font-size: 4rem;
+    }
+
+    .btn-premium{
+
+        width: 100%;
+
+        text-align: center;
+    }
+}
+
+/* =========================
+   MEJORA LAYOUT INTERNO (DERECHA)
+========================= */
+
+.card-body-layout {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.card-body-layout *{
+    background-color: transparent;
+}
+
+.info-rutas {
+    flex: 1; /* Toma el espacio principal */
+}
+
+.info-personal {
+    flex: 0 0 160px; /* Ancho fijo para la columna derecha */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-left: 20px;
+    border-left: 1px solid rgba(123, 90, 55, 0.15); /* Separador sutil */
+}
+
+.dato-extra {
+    display: flex;
+    flex-direction: column;
+}
+
+.dato-extra small {
+    color: #D6B87A; /* Tu color dorado */
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.dato-extra span {
+    font-size: 0.95rem;
+    color: #4d3928;
+    font-weight: 600;
+}
+
+/* =========================
+   AJUSTE RESPONSIVE INTERNO
+========================= */
+
+@media(max-width: 768px){
+    .card-body-layout {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .info-personal {
+        flex: none;
+        padding-left: 0;
+        padding-top: 15px;
+        border-left: none;
+        border-top: 1px solid rgba(123, 90, 55, 0.15);
+        flex-direction: row; /* En tablets/móviles grandes se ven uno al lado del otro */
+        justify-content: space-between;
+    }
+}
+
+@media(max-width: 480px){
+    .info-personal {
+        flex-direction: column; /* En móviles pequeños vuelve a lista */
+    }
+}

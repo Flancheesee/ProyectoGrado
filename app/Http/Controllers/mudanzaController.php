@@ -59,6 +59,7 @@ class MudanzaController extends Controller
                 'direccion_destinatario' => $data['direccion_destino'], 
                 'cantidad_empleados'     => $data['cantidad_empleados'],
                 'matricula_vehiculo'     => $vehiculo->matricula,
+                'fecha_mudanza'          => $data['fecha_mudanza'],
                 'estado'                 => 'pendiente'
             ]);
 
@@ -71,10 +72,18 @@ class MudanzaController extends Controller
         }
     }
 
-    public function mostrarMudanzasConductor($id)
+    public function asignarTrabajador(Request $request)
     {
-        $mudanzas = Mudanza::where('trabajador_id', $id)->get();
+        $request->validate([
+            'mudanza_id' => 'required|exists:mudanzas,mudanza_id',
+            'trabajador_id' => 'required|exists:trabajadores,dni',
+        ]);
 
-        return view('dashboard', compact('mudanzas'));
+        $mudanza = Mudanza::find($request->mudanza_id);
+        $mudanza->trabajador_id = $request->trabajador_id;
+        $mudanza->estado = 'en_curso'; // Opcional: cambiar estado al asignar
+        $mudanza->save();
+
+        return redirect()->back()->with('success', 'Conductor asignado correctamente a la mudanza #' . $request->mudanza_id);
     }
 }

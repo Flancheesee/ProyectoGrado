@@ -6,16 +6,14 @@
     background-color: transparent;
 }
 
-
-/*Menu lateral*/
-
-#menu_vertical{
-    position: relative;
+#menu_principal{
+    height: 300px !important; /* El !important asegura que gane a la regla general */
+    min-height: 300px;
+    margin-top: 20px; /* Separación opcional del header */
+    border-bottom: 3px solid #7B5A37; /* Cerramos el borde por abajo para que no quede "infinito" */
+    border-radius: 0 0 15px 0;
 }
 
-#menu_vertical:hover {
-    width: 230px; 
-}
 
 /* Contenedor Principal (El Hero) */
 #infoPrincipal.hero-section {
@@ -301,4 +299,39 @@
 
 input[type="radio"]:checked + img {
     border: 2px solid green;
+}
+
+/*
+    CALCULO DE GASTOS
+*/
+
+.precio-estimado-container {
+    margin: 25px 0;
+    padding: 15px;
+    text-align: center;
+    
+    background-color: transparent; 
+    border: 2px solid #D6B87A;
+    border-radius: 12px;
+    
+    color: #7B5A37;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.precio-estimado-container p {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.4;
+}
+
+#precio-total {
+    font-size: 1.25rem;
+    color: #A67C52; 
+    padding: 0 4px;
+}
+
+.precio-estimado-container:hover {
+    border-color: #7B5A37;
+    transform: translateY(-2px);
 }

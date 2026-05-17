@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MudanzaController;
+use App\Http\Controllers\WorkerDashboardController;
 
 /* -- RUTAS DE BLADE --*/
 
@@ -14,19 +15,15 @@ Route::get('/home', function () {
     return view('index');
 })-> name('home');
 
-Route::get('envios', function (){
+Route::get('/mudanza', function (){
     return view('envios');
 })-> name('envios');
 
-Route::get('faq', function(){
-    return view('faq');
-})-> name('faq');
+Route::get('/miMudanza', function(){
+    return view('miMudanza');
+})-> name('mi.mudanza');
 
-Route::get('review', function(){
-    return view('review');
-})-> name('review');
-
-Route::get('support', function(){
+Route::get('/support', function(){
     return view('support');
 })-> name('support');
 
@@ -38,17 +35,35 @@ Route::get('/cuenta', function () {
     return view('cuenta');
 })->name('cuenta')->middleware('auth');
 
+Route::get('/cuenta/editar', function(){
+    return view('editar');
+})->name('cliente.editar');
+
 Route::get('/work', function (){
     return view('trabajador');
 })->name('trabajador');
 
-/* -- RUTAS DE CONTROLADORES --*/
+/* -- /////////////////////////
+    RUTAS DE CONTROLADORES
+//////////////////////////--*/
+
 Route::post('/registro', [RegisterController::class, 'store'])->name('register.store');
+Route::post('/work/dashboard/register', [RegisterController::class, 'storeEmpleado'])->name('trabajador.store');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::post('/logout/cliente', [LoginController::class, 'logoutCliente'])->name('logout.cliente');
 Route::post('/logout/trabajador', [LoginController::class, 'logoutTrabajador'])->name('logout.trabajador');
 Route::post('/work/login', [LoginController::class, 'loginTrabajador'])->name('worklogin.post');
+
+// Ver el formulario de edición
+Route::get('/cuenta/edit', [LoginController::class, 'editProfile'])->name('cuenta.editar');
+
+// Procesar los datos (Usamos PUT porque es el estándar para actualizar)
+Route::put('/cuenta/edit', [LoginController::class, 'update'])->name('cuenta.update');
+
+Route::post('/mudanzas/asignar', [MudanzaController::class, 'asignarTrabajador'])->name('mudanzas.asignar');
+
+Route::delete('/work/delete', [WorkerDashboardController::class, 'delete'])->name('trabajadores.delete');
 
 Route::get('/work/dashboard', [LoginController::class, 'showDashboard'])
     ->name('dashboard')
