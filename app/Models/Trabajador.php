@@ -44,4 +44,14 @@ class Trabajador extends Authenticatable
     {
         return "{$this->nombre} {$this->apellidos}";
     }
+
+    public function mudanzasComoPeon()
+    {
+        return $this->belongsToMany(
+            Mudanza::class,
+            'peones_mudanza',
+            'dni',       
+            'mudanza_id' 
+        )->withTimestamps();
+    }
 }

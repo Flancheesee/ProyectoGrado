@@ -16,27 +16,35 @@ class WorkerDashboardController extends Controller
 
     public function index()
     {
-
+        // 1. Pillamos al usuario (Trabajador) logueado con el guard de workers
         $user = Auth::guard('worker')->user();
+        
+        // Si no hay usuario logueado, evitamos errores devolviendo al login
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
         $data = [];
 
-        // ADMIN
-        if (auth()->$user->hasRole('Admin')) {
-            $data['total_empleados'] = Trabajador::count();
-            $data['empleados'] = Trabajador::all();
+        //VISTA DE GESTOR
+        if ($user->rol === 'Gestor') {
+            $data['mudanzas'] = Mudanza::where('estado', 'pendiente')->get();
+            $data['trabajadores_disponibles'] = Trabajador::all();
+            $data['peones'] = Trabajador::where('rol', 'peon')->get();
         }
 
-        // GESTOR
-        if (auth()->$user->hasRole('Gestor')) {
-            $data['mudanzas_pendientes'] = Mudanza::whereNull('trabajador_id')->get();
-            $data['trabajadores_disponibles'] = Trabajador::role('Trabajador')->get();
+        //VISTA DE CONDUCTOR
+        if ($user->rol === 'Conductor') {
+            $data['mudanzas'] = Mudanza::where('matricula_vehiculo', $user->matricula_vehiculo)->get();
         }
 
-        // TRABAJADOR
-        if (auth()->$user->hasRole('Trabajador')) {
-            $data['mis_mudanzas'] = Mudanza::where('trabajador_id', $user->trabajador_id)->get();
+        //VISTA DE PEON 
+        if ($user->rol === 'Peon') {
+
+            $data['mudanzas'] = $user->mudanzas; 
         }
 
+        // Enviamos los datos unificados a la plantilla
         return view('worker.dashboard', $data);
     }
 
@@ -55,6 +63,29 @@ class WorkerDashboardController extends Controller
         ]);
 
         return back()->with('success', 'Mudanza asignada correctamente.');
+    }
+
+    public function asignarPeon(Request $request)
+    {
+        // 1.- Validamos que nos manden los datos correctos y que existan en la BD
+        $validated = $request->validate([
+            'mudanza_id' => 'required|exists:mudanzas,mudanza_id',
+            'dni'        => 'required|exists:trabajadores,dni',
+        ], [
+            'mudanza_id.exists' => 'La mudanza seleccionada no existe.',
+            'dni.exists'        => 'El DNI introducido no pertenece a ningún trabajador.',
+        ]);
+
+        // 2.- Buscamos la mudanza en cuestión
+        $mudanza = Mudanza::findOrFail($validated['mudanza_id']);
+
+        // 3.- METEMOS EL REGISTRO EN LA TABLA PEONES_MUDANZA
+        // El método attach() busca la relación 'peones' en tu modelo Mudanza 
+        // e inserta el dni y el mudanza_id en la tabla pivote de golpe.
+        $mudanza->peones()->attach($validated['dni']);
+
+        // 4.- Redirigimos de vuelta con mensaje de éxito
+        return redirect()->back()->with('success', 'Peón asignado correctamente a la mudanza.');
     }
 
     public function delete(Request $request)
