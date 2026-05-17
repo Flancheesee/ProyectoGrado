@@ -22,7 +22,6 @@
                         <div class="estado-vacio">
                             <div class="icono-estado">🔒</div>
                             <p>Para gestionar tus mudanzas, primero debes identificarte.</p>
-                            <a href="{{ route('login.post') }}" class="btn-premium">INICIA SESIÓN</a>
                         </div>
                     @else
                         <div class="grid-mudanzas">
@@ -61,7 +60,7 @@
                                 <div class="estado-vacio">
                                     <div class="icono-estado">🚛</div>
                                     <p>NO TIENES MUDANZAS, QUIZÁS SEA HORA DE HACER UNA</p>
-                                    <a href="{{ route('home') }}" class="btn-premium">SOLICITAR MUDANZA</a>
+                                    <a href="{{ route('envio') }}" class="btn-premium">SOLICITAR MUDANZA</a>
                                 </div>
                             @endforelse
                         </div>

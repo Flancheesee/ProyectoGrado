@@ -30,15 +30,15 @@
                             <h2>INICIOS</h2>
                             <p><b>MOVE IT</b> fue fundada en 2026 por Francisco Martin Jeronimo. La idea detras de esta aplicación surgio tras ver como ninguna empresa de mudanzas tenia buena reputación. Si nos eliges a nosotros nos encargaremos de que tu servicio sea el <b>mejor</b> posible.</p>
                         </div>
-                        <img class="presentacion" src="{{ asset('IMG/inicio_empresa.jpg') }}" alt="Inicios">
+                        <img class="presentacion" src="{{ asset('IMG/inicios.avif') }}" alt="Inicios">
                     </div>
 
                     <div id="nosotros" class="seccion-flex">
-                        <img class="presentacion" src="{{ asset('IMG/home_trabajo.jpg') }}" alt="Nosotros">
                         <div class="texto">
                             <h3>¿Porque elegirnos a nosotros?</h3>
                             <p>Si no nos conoces, seguramente no seamos tu unica opción, pero nuestros clientes siempre nos recomiendan a sus conocidos. Ofrecemos un servicio de seguridad el cual garantiza que el 100% de tus articulos llegara en el mismo estado en el que se embalaron.</p>
                         </div>
+                        <img class="presentacion" src="{{ asset('IMG/home_trabajo.jpg') }}" alt="Nosotros">
                     </div>
 
                     <div id="enlace_mudanza">

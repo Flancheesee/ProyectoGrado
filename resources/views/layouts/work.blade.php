@@ -15,9 +15,7 @@
                     <strong>MOVE</strong><span>IT</span> <small>| Workers</small>
                 </div>
                 <nav>
-                    @if(Auth::guard('worker')->check())
-                        <span class="user-name">👤 {{ Auth::guard('worker')->user()->nombre }}</span>
-                    @else
+                    @if(!Auth::guard('worker')->check())
                         <span>Portal de Empleados</span>
                     @endif
                 </nav>

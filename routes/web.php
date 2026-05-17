@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MudanzaController;
+use App\Http\Controllers\WorkerDashboardController;
 
 /* -- RUTAS DE BLADE --*/
 
@@ -61,6 +62,8 @@ Route::get('/cuenta/edit', [LoginController::class, 'editProfile'])->name('cuent
 Route::put('/cuenta/edit', [LoginController::class, 'update'])->name('cuenta.update');
 
 Route::post('/mudanzas/asignar', [MudanzaController::class, 'asignarTrabajador'])->name('mudanzas.asignar');
+
+Route::delete('/work/delete', [WorkerDashboardController::class, 'delete'])->name('trabajadores.delete');
 
 Route::get('/work/dashboard', [LoginController::class, 'showDashboard'])
     ->name('dashboard')

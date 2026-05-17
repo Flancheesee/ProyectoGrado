@@ -16,6 +16,7 @@ class RegisterController extends Controller
             'mote' => 'required|unique:users,mote',
             'nombre' => 'required|string',
             'email' => 'required|email|unique:users,email',
+            'telefono' => 'required|digits:9|unique:users,telefono',
             'password' => 'required|min:6|confirmed', // 'confirmed' chequea 'password_confirmation'
             'imagen' => 'nullable|image|max:2048'
         ]);
@@ -48,7 +49,7 @@ class RegisterController extends Controller
             'dni'       => ['required', 'unique:trabajadores,dni', 'regex:/^[0-9]{8}[A-Z]$/i'],
             'nombre'    => 'required|string|min:2|max:50',
             'apellidos' => 'required|string|min:2|max:100',
-            'telefono'  => 'required|digits:9',
+            'telefono'  => 'required|digits:9|unique:trabajadores,telefono',
             'sueldo'    => 'required|numeric|min:1000|max:50000',
             'rol'       => 'required|in:admin,conductor,peon',
             'password'  => 'required|min:6|confirmed',

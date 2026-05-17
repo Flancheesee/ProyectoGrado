@@ -7,6 +7,12 @@
         <link rel="stylesheet" href="{{ asset('CSS/work.css') }}">
     </head>
     <body>
+
+        @extends('layouts.work')
+
+        @section('title', 'Login Trabajadores - Move It')
+
+        @section('content')
         
         <header class="worker-header">
             @if(Auth::guard('worker')->check())
@@ -90,6 +96,7 @@
                             <div class="admin-actions">
                                 <button class="btn-admin" onclick="openModal('modalGestion')">🚚 Gestionar Mudanzas</button>
                                 <button class="btn-admin" onclick="openModal('modalTrabajador')">👤 Crear Trabajador</button>
+                                <button class="btn-admin" onclick="openModal('modalBorrar')">❌ Eliminar Trabajador</button>
                             </div>
                         </div>
 
@@ -273,6 +280,54 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div id="modalBorrar" class="modal-overlay">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 style="color: #d9534f;">Eliminar Trabajador</h3>
+                                    <button class="close-modal" onclick="closeModal('modalBorrar')">&times;</button>
+                                </div>
+                                
+                                <div class="modal-body">
+                                    <p style="margin-bottom: 20px; color: #666;">
+                                        Introduce el DNI del trabajador para confirmar su baja definitiva del sistema.
+                                    </p>
+
+                                    <form action="{{ route('trabajadores.delete') }}" method="POST" class="admin-form">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <div class="form-grid" style="display: block;"> <div class="form-group">
+                                                <label for="dni_delete">DNI del Trabajador</label>
+                                                <input type="text" name="dni" id="dni_delete" required 
+                                                    pattern="[0-9]{8}[A-Za-z]" 
+                                                    title="8 números y una letra" 
+                                                    placeholder="12345678Z" 
+                                                    maxlength="9">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-footer" style="margin-top: 25px;">
+                                            <button type="submit" class="btn-admin" style="background-color: #d9534f; border-color: #b52b27;">
+                                                Confirmar Eliminación
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                     @endif
                 </div>
 
@@ -294,6 +349,9 @@
                 <a href="{{ route('trabajador') }}">Ir al Login</a>
             @endif
         </header>
+
         <script src="{{ asset('JS/dashboard.js') }}"></script>
+
+        @endsection
     </body>
 </html>

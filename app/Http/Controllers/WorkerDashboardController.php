@@ -7,6 +7,7 @@ use App\Models\Mudanza;
 use App\Models\Trabajador;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\DB;
 
 class WorkerDashboardController extends Controller
 {
@@ -54,5 +55,37 @@ class WorkerDashboardController extends Controller
         ]);
 
         return back()->with('success', 'Mudanza asignada correctamente.');
+    }
+
+    public function delete(Request $request)
+    {
+        $dni = strtoupper(trim($request->input('dni')));
+
+        $trabajador = Trabajador::where('dni', $dni)->first();
+
+        if (!$trabajador) {
+            return redirect()->back()->with('error', 'El DNI introducido no pertenece a ningún trabajador activo.');
+        }
+
+        $listaGestores = Trabajador::where('rol', 'admin')->get();
+        foreach($listaGestores as $gestor){
+            if($dni === $gestor->dni){
+                return redirect()->back()->with('error', '¡Operación cancelada! No puedes eliminar tu propia ficha de administrador desde el panel.');
+            }
+        }
+
+        DB::beginTransaction();
+        try {
+            $trabajador->delete();
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Trabajador eliminado con éxito de Move It.');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            \Log::error("Error al borrar trabajador: " . "DNI: {$dni} - " . $e->getMessage());
+
+            return redirect()->back()->with('error', 'No se pudo procesar la baja debido a un problema técnico interno.');
+        }
     }
 }

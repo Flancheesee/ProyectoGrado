@@ -25,7 +25,7 @@
                     @auth
                         @if(!Auth::user()->tieneMudanzaPendiente())
                             {{-- Caso: Todo OK, puede pedir mudanza --}}
-                            <button class="btn-mudanza-principal" onclick="irAFormulario()">
+                            <button class="btn-mudanza-principal" onclick="toggleMudanza()">
                                 📦 HACER UNA MUDANZA
                             </button>
                         @else
@@ -174,6 +174,12 @@
                         @enderror
                     </div>
 
+                    <div id="contenedor-precio" class="precio-estimado-container">
+                        <p>
+                            Precio de <span id="precio-total">0</span> euros + gastos a calcular durante la mudanza
+                        </p>
+                    </div>
+
                     <button type="submit" class="btn-enviar-mudanza">
                         Confirmar Solicitud
                     </button>
@@ -196,5 +202,6 @@
                 });
             </script>
         @endif
+        <script src="{{ asset('JS/envio.js') }}"></script>
     </body>
 </html>
