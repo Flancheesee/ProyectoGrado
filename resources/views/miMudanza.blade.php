@@ -60,7 +60,7 @@
                                 <div class="estado-vacio">
                                     <div class="icono-estado">🚛</div>
                                     <p>NO TIENES MUDANZAS, QUIZÁS SEA HORA DE HACER UNA</p>
-                                    <a href="{{ route('envio') }}" class="btn-premium">SOLICITAR MUDANZA</a>
+                                    <a href="{{ route('envios') }}" class="btn-premium">SOLICITAR MUDANZA</a>
                                 </div>
                             @endforelse
                         </div>
