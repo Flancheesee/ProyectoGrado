@@ -1,0 +1,56 @@
+@import url("index.css");
+
+section{
+    height: 500px;
+}
+
+#infoPrincipal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;     
+    gap: 20px;               
+    height: 100%;  
+}          
+
+.ayuda {
+    border: 2px solid black;
+    width: 30%;
+    height: 200px;
+    background-color: #e2e8f0;
+    border-radius: 8px;
+    
+    display: flex;
+    flex-direction: column;  
+    justify-content: center; 
+    align-items: center;     
+    text-align: center;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ayuda:hover {
+    transform: scale(1.08); 
+    
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15); 
+    cursor: pointer;
+}
+
+.ayuda *{
+    background-color: transparent;
+}
+
+.ayuda_text{
+    padding-top: 20px;
+}
+
+.ayuda_img{
+    height: 80px;
+    width: 80px;
+}
+
+.ayuda_info {
+    color: red;
+    font-size: 30px !important;
+    display: inline-block !important;
+}
