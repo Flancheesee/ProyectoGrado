@@ -39,32 +39,40 @@
 -->
 
                         <div class="card" style="margin-top: 20px; padding: 20px;">
-                        <h2 style="color: var(--azul-oscuro);">🚚 Mis Mudanzas Asignadas</h2>
+                            <h2 style="color: var(--azul-oscuro);">🚚 Mis Mudanzas Asignadas</h2>
                         
-                        @if($mudanzas->isEmpty())
-                            <p>No tienes mudanzas asignadas en este momento.</p>
-                        @else
-                            <table class="work-table" style="width: 100%; border-collapse: collapse;">
-                                <thead>
-                                    <tr style="background: var(--azul-oscuro); color: white;">
-                                        <th style="padding: 10px;">ID</th>
-                                        <th>Origen</th>
-                                        <th>Destino</th>
-                                        <th>Fecha</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($mudanzas as $mudanza)
-                                        <tr style="border-bottom: 1px solid #eee;">
-                                            <td style="padding: 10px; text-align: center;">{{ $mudanza->id }}</td>
-                                            <td>{{ $mudanza->origen }}</td>
-                                            <td>{{ $mudanza->destino }}</td>
-                                            <td>{{ $mudanza->fecha }}</td>
+                            @if($mudanzas->isEmpty())
+                                <p>No tienes mudanzas asignadas en este momento.</p>
+                            @else
+                                <table class="work-table" style="width: 100%; border-collapse: collapse;">
+                                    <thead>
+                                        <tr style="background: var(--azul-oscuro); color: white;">
+                                            <th style="padding: 10px;">ID</th>
+                                            <th>Origen</th>
+                                            <th>Destino</th>
+                                            <th>Fecha</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @endif
+                                    </thead>
+                                    <tbody>
+                                        @foreach($mudanzas as $mudanza)
+                                            <tr style="border-bottom: 1px solid #eee; text-align: center;">
+                                                <td style="padding: 10px;">{{ $mudanza->mudanza_id }}</td>
+                                                
+                                                <td style="padding: 10px;">
+                                                    {{ $mudanza->origen ?->direccion ?? 'No especificada' }}
+                                                </td>
+                                                                                                
+                                                <td style="padding: 10px;">
+                                                    {{ $mudanza->direccion_destinatario?->direccion ?? $mudanza->direccion_destinatario }}
+                                                </td>
+                                                
+                                                <td style="padding: 10px;">{{ $mudanza->fecha_mudanza ?? 'Sin fecha' }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
+                        </div>
                     </div>
 
 <!--

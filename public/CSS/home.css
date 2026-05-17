@@ -14,6 +14,9 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
     line-height: 1.6;
+
+    border-right: 2px black solid;
+    border-left: 2px black solid;
 }
 
 /* --- Títulos y Bienvenida --- */
