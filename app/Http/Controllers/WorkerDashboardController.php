@@ -106,8 +106,17 @@ class WorkerDashboardController extends Controller
         }
 
         DB::beginTransaction();
+        DB::beginTransaction();
         try {
-            $trabajador->delete();
+            DB::table('model_has_roles')
+                ->where('model_id', $trabajador->dni)
+                ->where('model_type', get_class($trabajador))
+                ->delete();
+
+            DB::table('trabajadores')
+                ->where('dni', $trabajador->dni)
+                ->delete();
+
             DB::commit();
 
             return redirect()->back()->with('success', 'Trabajador eliminado con éxito de Move It.');
