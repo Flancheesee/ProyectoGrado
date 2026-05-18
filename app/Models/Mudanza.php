@@ -22,6 +22,8 @@ class Mudanza extends Model
         'fecha_mudanza'
     ];
 
+    dd($request->all());
+
     public function usuario() {
         return $this->belongsTo(User::class, 'mote_usuario', 'user_id');
     }

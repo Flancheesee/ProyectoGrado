@@ -50,7 +50,7 @@
                 </div>
 
                 <a href="{{ route('cuenta.editar')}}" class="btn-edit">Editar Perfil</a>
-                <a href="{{ route('home')}}" class="btn-edit">Volver a casa</a>
+                <a href="{{ route('home')}}" class="btn-edit">Volver</a>
             </div>
         </div>
     </body>

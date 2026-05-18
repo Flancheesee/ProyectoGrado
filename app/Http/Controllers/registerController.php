@@ -16,7 +16,7 @@ class RegisterController extends Controller
             'mote' => 'required|unique:users,mote',
             'nombre' => 'required|string',
             'email' => 'required|email|unique:users,email',
-            'telefono' => 'required|digits:9|unique:users,telefono',
+            'tlfn' => 'required|digits:9|unique:users,telefono',
             'password' => 'required|min:6|confirmed', // 'confirmed' chequea 'password_confirmation'
             'imagen' => 'nullable|image|max:2048'
         ]);
