@@ -114,7 +114,6 @@ class WorkerDashboardController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            \Log::error("Error al borrar trabajador: " . "DNI: {$dni} - " . $e->getMessage());
 
             return redirect()->back()->with('error', 'No se pudo procesar la baja debido a un problema técnico interno.');
         }
